@@ -1,0 +1,36 @@
+@use "../abstracts/colors";
+
+.login-btn {
+  padding: 0.5em 1em;
+  cursor: pointer;
+  border-radius: 0.5em;
+  background-color: #ffffff;
+  font-weight: 500;
+  color: colors.$color-text-grey;
+  border: none;
+  &:hover {
+    background-color: colors.$hover-button-primary;
+  }
+}
+
+.get-losion-free {
+  padding: 0.3em 1em;
+  cursor: pointer;
+  border-radius: 0.35em;
+  font-weight: 700;
+  color: white;
+  border: none;
+  background-color: colors.$black-700;
+  &:hover {
+    background-color: colors.$hover-button-secondary;
+  }
+}
+
+.themeIcon {
+  background-color: #ffffff;
+  padding: 0.2em;
+  cursor: pointer;
+  &:hover {
+    background-color: colors.$hover-button-primary;
+  }
+}

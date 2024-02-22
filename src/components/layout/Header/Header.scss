@@ -1,0 +1,29 @@
+.page-header {
+  .page-header-container-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+    .page-header-content-left {
+      display: flex;
+      gap: 0.5em;
+      .logo-image {
+        height: 2em;
+        width: 2em;
+      }
+      .header-app-name {
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+    }
+    .page-header-content-right {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      .themeIcon {
+        height: 2em;
+        width: 2em;
+      }
+    }
+  }
+}
