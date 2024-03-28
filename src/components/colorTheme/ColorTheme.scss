@@ -1,0 +1,39 @@
+@use '../../scss/abstracts/colors';
+.button-change-color-theme {
+  position: relative;
+  .color-themes-list {
+    position: absolute;
+    border-radius: 0.5em;
+    list-style: none;
+    width: 8em;
+    left: -6em;
+    margin-top: 0.5em;
+    box-shadow: 0 2px 5px 1px rgba(189, 189, 189, 0.57);
+    li:first-child {
+      button {
+        border-radius: 0.3em 0.3em 0 0;
+      }
+    }
+    li:last-child {
+      button {
+        border-radius: 0 0 0.3em 0.3em;
+      }
+    }
+    li {
+      background-color: transparent;
+      button {
+        width: 100%;
+        padding: 0.3em 0.7em;
+        font-size: 1rem;
+        text-align: start;
+        background-color: #ffffff;
+        border: none;
+        cursor: pointer;
+        transition: 150ms ease-out;
+        &:hover {
+          background-color: colors.$hover-button-primary;
+        }
+      }
+    }
+  }
+}

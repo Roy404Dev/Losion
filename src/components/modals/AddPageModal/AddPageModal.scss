@@ -1,0 +1,72 @@
+@use "../../../scss/abstracts/colors";
+.add-page-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  user-select: none;
+  .add-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    .add-page_name-input {
+      background-color: transparent;
+      border: none;
+      font-size: clamp(1rem, 2.5vw, 3rem);
+      font-weight: 700;
+      color: colors.getColor(text-primary);
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        color: colors.getColor(text-not-selected-dark);
+      }
+    }
+    .add-page-brand-new {
+      width: 100%;
+      list-style: none;
+      & > .add-page-option {
+        padding: 0.3em 0.8em;
+        border-radius: 0.5em;
+        cursor: pointer;
+        display: flex;
+        gap: 1em;
+        width: 100%;
+      }
+    }
+    .information-banner-add-new {
+      color: colors.getColor(text-not-selected);
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+    .add-page-default-options {
+      display: flex;
+      gap: 1em;
+      width: 100%;
+      padding: 0.3em 0.8em;
+      border-radius: 0.5em;
+      cursor: pointer;
+    }
+    .option-hover-style {
+      display: flex;
+      align-items: center;
+      svg {
+        height: 1.2em;
+        width: 1.2em;
+      }
+      span {
+        font-weight: 600;
+        font-size: 1rem;
+        color: colors.getColor(text-not-selected);
+      }
+      &:hover {
+        transition: 130ms;
+        span {
+          color: colors.getColor(primary);
+        }
+        background-color: colors.getColor(secondary-darker-bg);
+      }
+    }
+  }
+}

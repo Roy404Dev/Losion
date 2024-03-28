@@ -1,0 +1,26 @@
+.main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2.5em;
+  margin-top: 2em;
+  gap: 1em;
+  
+  .primary-heading {
+    font-size: clamp(2rem, 8.5vw, 3.5rem);
+    font-weight: bold;
+    line-height: 1;
+    overflow-wrap: break-word;
+    width: 10em;
+  }
+  .secondary-heading {
+    font-size: clamp(1rem, 5vw, 1.5rem);
+  }
+  .background-image {
+    max-width: 40rem;
+    width: 100%;
+    margin-top: 2em;
+  }
+}

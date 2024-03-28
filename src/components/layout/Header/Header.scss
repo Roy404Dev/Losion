@@ -1,3 +1,5 @@
+@use "../../../scss/abstracts/colors";
+
 .page-header {
   .page-header-container-row {
     display: flex;
@@ -17,12 +19,57 @@
       }
     }
     .page-header-content-right {
-      display: flex;
       align-items: center;
+      display: none; //not showing until screen size >=768
       gap: 1em;
       .themeIcon {
         height: 2em;
         width: 2em;
+      }
+    }
+
+    #menu-closed {
+      display: none;
+    }
+    #menu-open {
+      position: absolute;
+      width: 100vw;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+
+      top: 4em;
+      left: 0;
+
+      padding: 0.5em;
+
+      background-color: white;
+      .login-btn {
+        border: 1px solid #c9c9c9;
+      }
+      .login-btn,
+      .get-losion-free {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .page-header {
+    .page-header-container-row {
+      .page-header-content-right {
+        display: flex;
+      }
+      .hamburger-menu {
+        display: none;
+      }
+      #menu-open {
+        display: none;
       }
     }
   }

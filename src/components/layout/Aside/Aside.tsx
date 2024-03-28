@@ -1,0 +1,124 @@
+import "./Aside.scss";
+import SearchIcon from "@/assets/interface/SearchIcon";
+import ClockIcon from "@/assets/interface/ClockIcon";
+import AddIcon from "@/assets/interface/AddIcon";
+import TabComponent from "@/components/primitives/TabComponent/TabComponent";
+import { useDragger } from "@/hooks/useDragger";
+import { useEffect, useState } from "react";
+import { useAuth, useUser } from "@clerk/clerk-react";
+import { AddPage } from "@/api/addData";
+import PlusIcon from "@/assets/interface/PlusIcon";
+import { getTabs } from "@/api/getData";
+import { useQuery } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
+import { addNewTab } from "@/state/tab/tabSlice";
+import SettingsIcon from "@/assets/interface/UI/SettingsIcon";
+import { RootState } from "@/state/store";
+
+const Aside = () => {
+  const [ref] = useDragger();
+  const dispatch = useDispatch();
+  const user = useUser();
+  let FetchRan = false;
+  const token = useSelector((state: RootState) => state.user.token);
+  const { userId } = useAuth();
+  const [selectedTab, setSelectedTab] = useState<number>(0);
+
+  const { data: tabsData } = useQuery({
+    queryFn: () => getTabs(userId || ""),
+    queryKey: ["tabs"],
+    staleTime: 1000 * 60 * 60,
+  });
+
+  const handleAddTab = async () => {
+    await AddPage({
+      userId: userId,
+      name: "",
+      emoji: "",
+      template_id: 0,
+    });
+  };
+  useEffect(() => {
+    if (tabsData && !FetchRan && token != null) {
+      dispatch(addNewTab({ tabs: tabsData }));
+    }
+    return () => {
+      FetchRan = true;
+    };
+  }, [tabsData]);
+  return (
+    <aside className="app-aside" data-drag="aside-drag">
+      <div className="app-aside-row" ref={ref}>
+        <div className="app-aside-col">
+          <div className="app-aside-top-user">
+            <img
+              className="user-profile-image"
+              src={user.user?.imageUrl}
+              alt="user image"
+            />
+            <span className="user-profile-firstname">
+              {user.user?.firstName}
+            </span>
+          </div>
+          <ul className="app-aside-action-tabs">
+            <TabComponent className="aside-action-tab" dataValue={-1}>
+              <button className="task-tab-button action-tab-button">
+                <SearchIcon />
+                Search
+              </button>
+            </TabComponent>
+            <TabComponent className="aside-action-tab" dataValue={-1}>
+              <button className="task-tab-button action-tab-button">
+                <ClockIcon />
+                Updates
+              </button>
+            </TabComponent>
+            <TabComponent className="aside-action-tab" dataValue={-1}>
+              <button className="task-tab-button action-tab-button">
+                <SettingsIcon />
+                Settings & members
+              </button>
+            </TabComponent>
+            <TabComponent className="aside-action-tab" dataValue={-1}>
+              <button className="task-tab-button action-tab-button">
+                <AddIcon />
+                New Page
+              </button>
+            </TabComponent>
+          </ul>
+          <ul className="app-aside-task-tabs">
+            {tabsData &&
+              tabsData.map((element, index) => (
+                <TabComponent
+                  className="aside-task-tab"
+                  dataValue={index + 1}
+                  selectedTab={selectedTab}
+                  setSelectedTab={setSelectedTab}
+                  key={index}
+                  TaskId={element.id}
+                  showActions={true}
+                >
+                  <button className="task-tab-button">
+                    {element.emoji} {element.name}
+                  </button>
+                </TabComponent>
+              ))}
+          </ul>
+          <button className="add-page-btn" onClick={handleAddTab}>
+            <PlusIcon /> Add a page
+          </button>
+          <ul className="app-aside-settings">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  );
+};
+
+export default Aside;

@@ -1,0 +1,74 @@
+@use "../../../scss/abstracts/colors";
+
+.app-aside-tab-link {
+  .app-aside-tab {
+    display: flex;
+    width: 100%;
+    border-radius: 0.2em;
+    padding: 0.1em 0.5em;
+    //Disable Text Selection
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    align-items: center;
+    //Show more task
+    .task-tab-show-more {
+      padding: none;
+      background-color: transparent;
+      border: none;
+      padding: 0.25em;
+      border-radius: 0.25em;
+      &:hover {
+        background-color: colors.getColor(hover-tab);
+      }
+      .task-tab-show-more-active {
+        transform: rotate(90deg);
+        transition: 200ms ease-out;
+      }
+      .task-tab-show-more-notActive {
+        transition: 200ms;
+      }
+    }
+    .task-tab-button {
+      display: flex;
+      gap: 0.5em;
+      border: none;
+      width: 100%;
+      // font-size: 0.8rem;
+
+      align-self: flex-start;
+      // color: colors.getColor(secondary);
+      cursor: pointer;
+      background-color: transparent;
+      // font-weight: 600;
+      color: rgb(155, 155, 155);
+      background-color: transparent;
+      font-weight: 500;
+      line-height: 21px;
+      font-size: 14px;
+    }
+
+    &:hover {
+      // Apply delay between hover states
+      transition: 200ms ease;
+      background-color: colors.getColor(secondary-bg);
+    }
+  }
+  .aside-task-tab--selected {
+    background-color: colors.getColor(secondary-bg);
+    .task-tab-button {
+      color: colors.getColor(primary);
+    }
+    &:hover {
+      background-color: colors.getColor(hover-tab);
+    }
+  }
+  .TabActions {
+    display: none;
+  }
+  &:hover {
+    .TabActions {
+      display: block;
+    }
+  }
+}

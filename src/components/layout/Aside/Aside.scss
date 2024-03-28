@@ -1,0 +1,124 @@
+@use "../../../scss/abstracts/colors";
+.app-aside {
+  min-height: 100vh;
+  width: 20%;
+  padding: 0.5em 0;
+  user-select: none;
+  background-color: colors.getColor(primary-bg);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  .app-aside-top-user {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 0.3em;
+    gap: 0.5em;
+    padding: 0.5em 0.5em 0.5em 1em;
+    .user-profile-image {
+      height: 1.2em;
+      width: 1.2em;
+    }
+    .user-profile-firstname {
+      font-weight: 700;
+      color: colors.getColor(primary);
+      font-size: 0.8rem;
+    }
+    &:hover {
+      background-color: colors.getColor(secondary-bg);
+    }
+  }
+  span {
+    color: colors.$selected-theme-text-clr;
+  }
+
+  .aside-task-tab {
+    .task-tab-button {
+      display: flex;
+      border: none;
+      gap: 0.5em;
+
+      width: 100%;
+      align-self: flex-start;
+      cursor: pointer;
+      background-color: transparent;
+      font-weight: 500;
+      line-height: 21px;
+      font-size: 14px;
+      padding: 0.2em 0.5em;
+      border: 1px solid red;
+    }
+  }
+
+  // ===Action Tabs===
+  .app-aside-action-tabs {
+    display: grid;
+    gap: 0.3em;
+    padding: 0.5em 0 1em 0;
+    .action-tab-button {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      padding: 0.1em 0;
+    }
+    .aside-action-tab {
+      .task-tab-show-more {
+        display: none;
+      }
+      margin: 0 0.5em;
+    }
+  }
+
+  .BoardView-aside-tab__wrapper,
+  .Table-aside-tab__wrapper {
+    border-radius: 0.2em;
+    padding: 0.1em 1em;
+    span {
+      font-size: 0.8rem;
+    }
+  }
+  .app-aside-task-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+  }
+  .add-page-btn {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: colors.getColor(secondary);
+    width: 100%;
+    padding: 0.3em 0.3em 0.3em 1em;
+    &:hover {
+      background-color: colors.getColor(secondary-bg);
+    }
+    & > svg {
+      height: 1em;
+      width: 1em;
+    }
+    .plusIcon {
+      fill: colors.getColor(darker-bg);
+    }
+  }
+
+  // ====icons colors====
+
+  .app-aside-row {
+    display: flex;
+    justify-content: space-between;
+    .app-aside-col {
+      width: 100%;
+      padding: 0 0.2em;
+    }
+    .aside-dragger {
+      width: 0.1em;
+      min-height: 100vh;
+      cursor: col-resize;
+      border-right: 2px solid colors.getColor(secondary-bg);
+      padding: 0 0.2em;
+    }
+  }
+}

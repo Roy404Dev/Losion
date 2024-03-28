@@ -14,7 +14,11 @@
 }
 
 .get-losion-free {
-  padding: 0.3em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.4em 1em;
   cursor: pointer;
   border-radius: 0.35em;
   font-weight: 700;
@@ -29,8 +33,21 @@
 .themeIcon {
   background-color: #ffffff;
   padding: 0.2em;
+  height: 1.5em;
+  width: 1.5em;
   cursor: pointer;
   &:hover {
     background-color: colors.$hover-button-primary;
   }
+}
+
+// =======Arrows=======
+
+.chevronArrowRight {
+  height: 1em;
+  width: 1em;
+}
+
+.chevronArrowRight-fill {
+  fill: white;
 }

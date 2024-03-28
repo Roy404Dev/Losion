@@ -1,0 +1,73 @@
+@use "../../../../../scss/abstracts/colors";
+
+.taskListLayout__header {
+  border-bottom: 0.5px solid colors.getColor(light-dark-border);
+  .taskListLayout__header-row {
+    display: flex;
+    justify-content: space-between;
+    .taskListLayout__header__left__content {
+      .task-name-wrapper {
+        display: flex;
+        gap: 0.5em;
+        color: colors.getColor(text-primary);
+        font-size: 0.8rem;
+        .taskListLayout__header-hamburgerMenu {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.4em;
+          border-radius: 0.25em;
+          justify-content: center;
+          cursor: pointer;
+          span {
+            content: "";
+            display: block;
+            height: 1.5px;
+            width: 1.3em;
+            background-color: colors.getColor(primary);
+          }
+        }
+      }
+    }
+    .taskListLayout__header__right__content {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      .edited-time-stamp {
+        display: none;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: colors.getColor(text-not-selected);
+      }
+      .share-btn {
+        display: none;
+        background-color: transparent;
+        color: colors.getColor(text-primary);
+        border: none;
+        cursor: pointer;
+      }
+      .star-icon {
+        fill: colors.getColor(secondary);
+      }
+      .view-all-updates,
+      .more-btn,
+      .add-to-favorite {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+      .horizontalElipsis {
+        height: 2rem;
+        width: 2em;
+        fill: colors.getColor(primary);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .edited-time-stamp,
+  .share-btn {
+    display: block;
+  }
+}

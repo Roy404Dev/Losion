@@ -1,0 +1,15 @@
+@use "../abstracts/colors";
+
+.SearchIconSvg,
+.ClockIconSvg,
+.AddIconSvg {
+  height: 1.1em;
+  width: 1.1em;
+  fill: colors.getColor(secondary);
+}
+
+.chevronRight {
+  height: 0.6em;
+  width: 0.6em;
+  fill: #5f5f5f;
+}

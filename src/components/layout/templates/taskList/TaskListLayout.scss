@@ -1,0 +1,139 @@
+@use "../../../../scss/abstracts/colors";
+
+.TaskListLayout {
+  width: 100%;
+  padding: 0.5em 1.5em;
+  user-select: none;
+  height: 100vh;
+
+  .TaskListLayout__content {
+    max-width: 90%;
+    margin: 0 auto;
+    margin-top: 2em;
+    //====Scroll Bar======
+    &::-webkit-scrollbar {
+      width: 1em;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+      width: 1em;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: red;
+      outline: 1px solid slategrey;
+    }
+    //====================
+    .taskListLayout__sub-message {
+      .task-name-wrapper {
+        color: colors.getColor(primary);
+        font-size: clamp(1rem, 2vw, 3rem);
+        font-weight: 600;
+        .task-change-emoji {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          border-radius: 0.15em;
+          &:hover {
+            background-color: colors.getColor(secondary-darker-bg);
+          }
+        }
+      }
+      .task-message-paragraph {
+        font-size: clamp(0.5rem, 2vw, 0.8rem);
+        color: colors.getColor(primary);
+        max-width: 27em;
+        .task-message-paragraph__marked-word {
+          background-color: colors.getColor(secondary-darker-bg);
+          border-radius: 0.25em;
+          padding: 0.25em;
+          font-size: 0.7rem;
+          color: colors.getColor(text-light-red);
+        }
+      }
+    }
+    .taskListLayout__wrapper {
+      .losion-collection_view_page-block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid colors.getColor(primary-border);
+        margin: 1em 0 1em 0;
+        font-size: 0.8rem;
+        .losion-tab-list {
+          display: flex;
+          align-items: center;
+          list-style: none;
+          gap: 1em;
+          .losion-collection-view-tab-button {
+            padding: 0 0.5em;
+            button {
+              display: flex;
+              align-items: center;
+              gap: 0.5em;
+              font-weight: 500;
+              background-color: transparent;
+              border: none;
+              cursor: pointer;
+              color: colors.getColor(text-not-selected);
+            }
+          }
+          //SELECTED STATE
+          .losion-collection-view-tab-button__selected {
+            border-bottom: 3px solid colors.getColor(secondary-border);
+            button {
+              color: colors.getColor(text-primary);
+              .CollectionBoardIcon {
+                fill: colors.getColor(primary);
+              }
+            }
+          }
+          .CollectionBoardIcon {
+            fill: colors.getColor(darker-bg);
+            height: 1em;
+          }
+        }
+        .losion-action-list {
+          display: flex;
+          align-items: center;
+          gap: 1em;
+          .losion-collection-action {
+            .losion-collection-action-button {
+              border: none;
+              cursor: pointer;
+              display: grid;
+              background-color: transparent;
+              height: 100%;
+              color: colors.getColor(secondary);
+              .horizontalElipsis {
+                fill: colors.getColor(secondary);
+                height: 2em;
+                width: 2em;
+              }
+              .lightningIcon {
+                fill: colors.getColor(secondary);
+              }
+            }
+            .action-new-button {
+              display: flex;
+              align-items: center;
+              gap: 0.5em;
+              background-color: colors.getColor(blue);
+              color: white;
+              padding: 0.25em 0.5em;
+              border-radius: 0.25em;
+              font-weight: 600;
+              .chevronDownBtn {
+                fill: white;
+              }
+            }
+          }
+        }
+        .losion-action-list {
+          display: flex;
+          align-items: center;
+          list-style: none;
+        }
+      }
+    }
+  }
+}

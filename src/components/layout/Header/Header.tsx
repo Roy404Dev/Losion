@@ -1,7 +1,15 @@
 import logo from "/logoBlack.svg";
-import themeIcon from "@/assets/interface/themeIcon.svg";
 import "./Header.scss";
+import { useState } from "react";
+import { SignInButton } from "@clerk/clerk-react";
+import ColorTheme from "../../colorTheme/ColorTheme";
+import HamburgerMenu from "../../primitives/HamburgerMenu/HamburgerMenu";
+
 const Header = () => {
+  const [colorTheme, setColorTheme] = useState("light");
+  const [isListVisible, setIsListVisible] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  console.log(colorTheme);
   return (
     <header className="page-header">
       <div className="page-header-container-row">
@@ -10,22 +18,31 @@ const Header = () => {
           <span className="header-app-name">Losion</span>
         </div>
         <div className="page-header-content-right">
-          <button className="login-btn">Log in</button>
-          <button className="get-losion-free">Get Lotion free</button>
-          <button className="change-color-theme-icon">
-            <img src={themeIcon} className="themeIcon" alt="Theme icon" />
-            <ul>
-              <li>
-                <button>Light</button>
-              </li>
-              <li>
-                <button>Dark</button>
-              </li>
-              <li>
-                <button>System</button>
-              </li>
-            </ul>
-          </button>
+          <SignInButton mode="modal">
+            <button className="login-btn">Log in</button>
+          </SignInButton>
+          <SignInButton mode="modal">
+            <button className="get-losion-free">Get Lotion free</button>
+          </SignInButton>
+          <ColorTheme
+            isListVisible={isListVisible}
+            setColorTheme={setColorTheme}
+            setIsListVisible={setIsListVisible}
+          />
+        </div>
+        <HamburgerMenu isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
+        <div className="menu" id={isNavOpen ? "menu-open" : "menu-closed"}>
+          <SignInButton mode="modal">
+            <button className="login-btn">Log in</button>
+          </SignInButton>
+          <SignInButton mode="modal">
+            <button className="get-losion-free">Get Lotion free</button>
+          </SignInButton>
+          <ColorTheme
+            isListVisible={isListVisible}
+            setColorTheme={setColorTheme}
+            setIsListVisible={setIsListVisible}
+          />
         </div>
       </div>
     </header>

@@ -1,0 +1,109 @@
+@use "../../scss/abstracts/colors";
+
+.taskWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  font-weight: 600;
+  padding: 0.25em 0.5em;
+  border-radius: 0.25em;
+
+  background-color: colors.getColor(secondary-darker-bg);
+  color: colors.getColor(primary);
+
+  //Make picker position absolute
+  em-emoji-picker {
+    position: absolute;
+  }
+
+  //Hover mode
+
+  .taskWrapper_editField {
+    background-color: transparent;
+    border: none;
+    color: colors.getColor(primary);
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+  .taskWrapper-row-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .taskWrapper__editEmoji {
+    background-color: transparent;
+    border: none;
+    padding: 0.15em;
+    border-radius: 0.25em;
+  }
+  .selectedEmoji {
+    height: 1.5em;
+    cursor: pointer;
+    padding: 0.15em;
+    border-radius: 0.25em;
+  }
+  .selectIconBtn {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.25em;
+    padding: 0.25em;
+    &:hover {
+      background-color: colors.getColor(hover-light);
+    }
+  }
+  .content-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    height: 1.5em;
+    gap: 0.4em;
+  }
+
+  .taskWrapper__hover-menu {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.2s linear;
+    //UNION
+    .task-edit-btn,
+    .task-show-more {
+      background-color: transparent;
+      cursor: pointer;
+      border: none;
+      padding: 0.25em;
+    }
+
+    .task-edit-btn {
+      background-color: colors.getColor(secondary-darker-bg);
+      border-radius: 0.25em 0 0 0.25em;
+      border-right: 1px solid colors.getColor(selected-bg);
+      .EditIcon {
+        fill: colors.getColor(secondary);
+      }
+    }
+
+    .task-show-more {
+      border-radius: 0 0.25em 0.25em 0;
+      background-color: colors.getColor(secondary-darker-bg);
+      .horizontalElipsis {
+        fill: colors.getColor(secondary);
+      }
+    }
+  }
+  &:hover {
+    transition: 200ms ease-out;
+    background-color: colors.getColor(selected-bg);
+    .taskWrapper__hover-menu {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
