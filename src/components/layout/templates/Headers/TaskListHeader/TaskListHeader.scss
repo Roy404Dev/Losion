@@ -1,11 +1,14 @@
 @use "../../../../../scss/abstracts/colors";
 
 .taskListLayout__header {
+  padding: 0.5em 1.5em;
   border-bottom: 0.5px solid colors.getColor(light-dark-border);
   .taskListLayout__header-row {
     display: flex;
     justify-content: space-between;
     .taskListLayout__header__left__content {
+      display: grid;
+      align-items: center;
       .task-name-wrapper {
         display: flex;
         gap: 0.5em;
@@ -26,6 +29,11 @@
             width: 1.3em;
             background-color: colors.getColor(primary);
           }
+        }
+        .task-change-tab-emoji {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
         }
       }
     }

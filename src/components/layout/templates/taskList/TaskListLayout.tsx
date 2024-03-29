@@ -69,9 +69,7 @@ const TaskListLayout = () => {
 
   return (
     <div className="TaskListLayout">
-      <div className="taskListLayout__header">
-        <TaskListHeader tabs={filterTabs} />
-      </div>
+      <TaskListHeader tabs={filterTabs} />
       <div className="TaskListLayout__content">
         <div className="taskListLayout__sub-message">
           <div className="task-name-wrapper">
@@ -105,7 +103,7 @@ const TaskListLayout = () => {
                   Board View
                 </button>
               </li>
-              <li className="losion-collection-view-tab-button">
+              <li className="losion-collection-view-tab-button losion-collection-view-tab-table">
                 <button>
                   <TableIcon />
                   Table
