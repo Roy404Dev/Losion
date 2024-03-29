@@ -9,11 +9,17 @@ import { useMemo, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router";
 import { v4 as uuidv4 } from "uuid";
+
 type BoardViewColumnType = {
   statusTitle: string;
   statusName: string;
   tasks?: TaskType[] | null;
   taskClassName: string;
+};
+
+type ModifyType = {
+  name: string;
+  emoji: string;
 };
 
 const BoardViewColumn = ({
@@ -60,24 +66,9 @@ const BoardViewColumn = ({
   const [isEditable, setIsEditable] = useState({
     taskId: "",
   });
-
   const handleAddTask = async () => {
     if (user.user?.id && params.id) {
       try {
-        // dispatch(
-        //   addNewTasks([
-        //     {
-        //       created_at: "",
-        //       id: "",
-        //       property: "",
-        //       status: statusName,
-        //       tab_id: params.id,
-        //       table_name: "lopas",
-        //       user_id: user.user?.id,
-        //       order:
-        //     },
-        //   ])
-        // );
         const uniqueId = uuidv4();
         setIsEditable({
           taskId: uniqueId,
@@ -98,14 +89,16 @@ const BoardViewColumn = ({
     }
   };
 
-  const handleModify = async (name: string) => {
+  const handleModify = async (name: string | undefined, emoji: string | undefined) => {
+    console.log(emoji);
+    console.log(name);
     if (user.user?.id && params.id) {
       await modifyTaskMutation({
-        table_name: name,
+        table_name: name || "",
         property: "",
         status: statusName,
         user_id: user.user?.id,
-        emoji: "",
+        emoji: emoji || "",
         tab_id: params.id,
         task_id: isEditable.taskId,
       });

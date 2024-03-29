@@ -100,9 +100,6 @@
           align-items: center;
           gap: 1em;
           //Mobile view
-          .losion-collection-action:nth-child(-n + 4) {
-            display: none;
-          }
           .losion-collection-action {
             .losion-collection-action-button {
               border: none;
@@ -140,6 +137,16 @@
           align-items: center;
           list-style: none;
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .losion-action-list {
+    .losion-collection-action {
+      &:nth-child(-n + 4) {
+        display: none;
       }
     }
   }

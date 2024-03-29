@@ -29,8 +29,12 @@ const TaskListLayout = () => {
   const dispatch = useDispatch();
   const [selectedEmoji, setSelectedEmoji] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-
   let FetchRan = false;
+
+  interface Emoji {
+    unified: string;
+  }
+
   const setState = () => {
     if (!FetchRan && tasks) {
       dispatch(addNewTasks(tasks));
@@ -39,16 +43,13 @@ const TaskListLayout = () => {
   };
   if (tasks) setState();
 
-  interface Emoji {
-    unified: string;
-  }
   // name: string | null
   const handleChangeEmoji = async (e: Emoji) => {
+    if (!userId) return null;
     const emoji = getEmoji(e);
     if (emoji === selectedEmoji) return null;
     setSelectedEmoji(emoji);
     setShowEmojiPicker(!showEmojiPicker);
-    if (!userId) return null;
     const dataObj = {
       emoji: emoji,
       name: filterTabs[0].name,

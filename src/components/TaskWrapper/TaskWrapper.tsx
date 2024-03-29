@@ -5,11 +5,12 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import Picker from "@emoji-mart/react";
 import PageIcon from "@/assets/interface/icons/PageIcon";
 import ActionsModal from "../modals/ActionsModal/ActionsModal";
+import { getEmoji } from "@/hooks/getEmoji";
 
 type taskWrapper = {
   children: JSX.Element;
   customKey: string;
-  customFunc: (name: string) => void;
+  customFunc: (name: string | undefined, emoji: string | undefined) => void;
   setEditBoolean: Dispatch<SetStateAction<{ taskId: string }>>;
   editBoolean: {
     taskId: string;
@@ -28,36 +29,38 @@ const TaskWrapper = ({
   const [name, setName] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [emojiData, setEmojiData] = useState("");
+  const [emojiData, setEmojiData] = useState<string | undefined>(undefined);
   const [showActionModal, setShowActionModal] = useState(false);
   let isEditable = editBoolean.taskId === customKey;
   interface Emoji {
     unified: string;
     // Add more properties if necessary
   }
-  if (emoji) {
-    setEmojiData(emoji);
-  }
   const addEmoji = (e: Emoji) => {
-    let sym = e.unified.split("-");
-    let codesArray: number[] = []; // Explicitly defining the type as number[]
-    sym.forEach((el) => codesArray.push(parseInt(el, 16))); // Parse hexadecimal string to number
-    let emoji = String.fromCodePoint(...codesArray);
+    const emoji = getEmoji(e);
     setEmojiData(emoji);
     setShowEmojiPicker(!showEmojiPicker);
   };
+  let fetchRan = false;
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-      // Select the text inside the input element
-      inputRef.current.select();
+    if (!fetchRan) {
+      if (inputRef.current) {
+        inputRef.current.focus();
+        // Select the text inside the input element
+        inputRef.current.select();
+      }
+      setEmojiData(emoji);
     }
+    return () => {
+      fetchRan = true;
+    };
   }, []);
+
   return (
     <div
       className="taskWrapper"
       key={customKey}
-      onKeyDown={(e) => (e.key === "Enter" ? customFunc(name) : "")}
+      onKeyDown={(e) => (e.key === "Enter" ? customFunc(name, emojiData) : "")}
     >
       {showEmojiPicker && <Picker onEmojiSelect={addEmoji} />}
       <div className="taskWrapper-row-content">
@@ -65,7 +68,7 @@ const TaskWrapper = ({
           className="selectIconBtn"
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
         >
-          {emojiData && isEditable ? (
+          {emojiData ? (
             <span className="selectedEmoji">{emojiData}</span>
           ) : (
             <PageIcon />

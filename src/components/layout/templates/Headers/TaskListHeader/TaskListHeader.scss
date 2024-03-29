@@ -74,8 +74,15 @@
 }
 
 @media screen and (min-width: 768px) {
-  .edited-time-stamp,
-  .share-btn {
-    display: block;
+  .taskListLayout__header {
+    border: none;
+    .taskListLayout__header-row {
+      .taskListLayout__header__right__content {
+        .edited-time-stamp,
+        .share-btn {
+          display: block;
+        }
+      }
+    }
   }
 }
