@@ -30,11 +30,9 @@ const TaskListLayout = () => {
   const [selectedEmoji, setSelectedEmoji] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   let FetchRan = false;
-
   interface Emoji {
     unified: string;
   }
-
   const setState = () => {
     if (!FetchRan && tasks) {
       dispatch(addNewTasks(tasks));

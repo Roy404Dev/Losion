@@ -2,15 +2,10 @@ import Header from "../../components/layout/Header/Header";
 import ChevronArrowRight from "../../assets/interface/ArrowRight";
 
 import "./LandingPage.scss";
-import { SignInButton, SignOutButton } from "@clerk/clerk-react";
+import { SignInButton } from "@clerk/clerk-react";
 const LandingPage = () => {
-  // const user = useUser();
-  // console.log(user.user?.id);
   return (
     <div className="landing-page">
-      <SignOutButton>
-        <button>signout</button>
-      </SignOutButton>
       <Header />
       <main className="main-page">
         <h1 className="primary-heading">
@@ -19,7 +14,7 @@ const LandingPage = () => {
         <h2 className="secondary-heading">
           Notion is the connected workspace where better, faster work happens.
         </h2>
-        <SignInButton mode="modal">
+        <SignInButton mode="modal" redirectUrl="taskList">
           <button className="get-losion-free" aria-label="get losion free">
             Get Losion free <ChevronArrowRight />
           </button>
