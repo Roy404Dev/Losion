@@ -17,10 +17,6 @@ type BoardViewColumnType = {
   taskClassName: string;
 };
 
-type ModifyType = {
-  name: string;
-  emoji: string;
-};
 
 const BoardViewColumn = ({
   statusTitle,
