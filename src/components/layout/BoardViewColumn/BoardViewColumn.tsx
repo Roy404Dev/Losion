@@ -34,17 +34,6 @@ const BoardViewColumn = ({
     [tasks]
   );
 
-  // const sortedTasks = useMemo(
-  //   () =>
-  //     filteredTasks?.sort((a, b) => {
-  //       if (a.order != null && b.order != null) {
-  //         return a.order - b.order;
-  //       }
-  //       return 0;
-  //     }),
-  //   [filteredTasks]
-  // );
-
   const { mutateAsync: addTaskMutation } = useMutation({
     mutationFn: addTask,
     onSuccess: () => {
@@ -85,7 +74,10 @@ const BoardViewColumn = ({
     }
   };
 
-  const handleModify = async (name: string | undefined, emoji: string | undefined) => {
+  const handleModify = async (
+    name: string | undefined,
+    emoji: string | undefined
+  ) => {
     if (user.user?.id && params.id) {
       await modifyTaskMutation({
         table_name: name || "",

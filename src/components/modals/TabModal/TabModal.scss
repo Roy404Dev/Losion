@@ -1,0 +1,30 @@
+@use "../../../scss/abstracts/colors";
+
+.tab-modal {
+  position: absolute;
+  background-color: colors.getColor(secondary-darker-bg);
+  right: -50%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  border-radius: 0.25em;
+  z-index: 999;
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+  .tab-modal__wrapper {
+    padding: 0.8em 1em;
+    .tab-modal__actions-list {
+      display: grid;
+      list-style: none;
+      .tab-modal__action {
+        text-align: start;
+        .tab-modal__action-button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          color: colors.getColor(primary);
+        }
+      }
+    }
+  }
+}

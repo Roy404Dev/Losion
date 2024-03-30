@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { UUID } from "crypto";
 import ChevronRight from "@/assets/interface/ChevronRight";
 import TabActions from "../TabActions/TabActions";
+import TabModal from "@/components/modals/TabModal/TabModal";
 
 type TabComponentType = {
   children: React.ReactNode;
@@ -22,9 +23,10 @@ const TabComponent = ({
   selectedTab,
   setSelectedTab,
   TaskId,
-  showActions
+  showActions,
 }: TabComponentType) => {
   const [showMore, setShowMore] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const handleClick = () => {
     if (dataValue && setSelectedTab) {
       setSelectedTab(dataValue);
@@ -45,16 +47,23 @@ const TabComponent = ({
         role="tab"
       >
         <button
-          className='task-tab-show-more'
+          className="task-tab-show-more"
           onClick={() => setShowMore(!showMore)}
         >
           <ChevronRight
-            additionalClassName={showMore ? "task-tab-show-more-active" : "task-tab-show-more-notActive"}
+            additionalClassName={
+              showMore
+                ? "task-tab-show-more-active"
+                : "task-tab-show-more-notActive"
+            }
           />
         </button>
         {children}
-        {showActions && <TabActions />}
+        {showActions && (
+          <TabActions modalState={showModal} setModalState={setShowModal} />
+        )}
       </li>
+      {showModal && <TabModal />}
       {showMore && (
         <>
           <div className="BoardView-aside-tab" role="tab">
