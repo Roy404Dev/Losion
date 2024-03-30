@@ -34,16 +34,16 @@ const BoardViewColumn = ({
     [tasks]
   );
 
-  const sortedTasks = useMemo(
-    () =>
-      filteredTasks?.sort((a, b) => {
-        if (a.order != null && b.order != null) {
-          return a.order - b.order;
-        }
-        return 0;
-      }),
-    [filteredTasks]
-  );
+  // const sortedTasks = useMemo(
+  //   () =>
+  //     filteredTasks?.sort((a, b) => {
+  //       if (a.order != null && b.order != null) {
+  //         return a.order - b.order;
+  //       }
+  //       return 0;
+  //     }),
+  //   [filteredTasks]
+  // );
 
   const { mutateAsync: addTaskMutation } = useMutation({
     mutationFn: addTask,
@@ -111,8 +111,8 @@ const BoardViewColumn = ({
         <span className="losion-group-count">{filteredTasks?.length}</span>
       </div>
       <ul className="losion-tasks-group">
-        {sortedTasks ? (
-          sortedTasks.map((sortedTask, index) => (
+        {filteredTasks ? (
+          filteredTasks.map((sortedTask, index) => (
             <TaskWrapper
               customKey={sortedTask.id}
               key={index}
