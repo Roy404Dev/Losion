@@ -9,7 +9,7 @@ import { useAuth, useUser } from "@clerk/clerk-react";
 import { AddPage } from "@/api/addData";
 import PlusIcon from "@/assets/interface/PlusIcon";
 import { getTabs } from "@/api/getData";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewTab } from "@/state/tab/tabSlice";
 import SettingsIcon from "@/assets/interface/UI/SettingsIcon";
@@ -20,6 +20,7 @@ const Aside = () => {
   const dispatch = useDispatch();
   const user = useUser();
   let FetchRan = false;
+  const queryClient = useQueryClient();
   const token = useSelector((state: RootState) => state.user.token);
   const { userId } = useAuth();
   const [selectedTab, setSelectedTab] = useState<number>(0);
@@ -30,8 +31,14 @@ const Aside = () => {
     staleTime: 1000 * 60 * 60,
   });
 
+  const {mutateAsync: addTabMutation} = useMutation({
+    mutationFn: AddPage,
+    onSuccess: () => queryClient.invalidateQueries(["tabs"])
+  })
+
   const handleAddTab = async () => {
-    await AddPage({
+    if (tabsData && tabsData?.length > 10) return null; //Check if tab limit isn't reached
+    await addTabMutation({
       userId: userId,
       name: "",
       emoji: "",

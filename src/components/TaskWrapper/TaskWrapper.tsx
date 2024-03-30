@@ -80,6 +80,7 @@ const TaskWrapper = ({
             className="taskWrapper_editField"
             onChange={(e) => setName(e.target.value)}
             ref={inputRef}
+            maxLength={25}
           />
         ) : (
           children

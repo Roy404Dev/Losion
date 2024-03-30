@@ -16,7 +16,7 @@ type BoardViewColumnType = {
   tasks?: TaskType[] | null;
   taskClassName: string;
 };
-
+//TODO
 
 const BoardViewColumn = ({
   statusTitle,
@@ -86,8 +86,6 @@ const BoardViewColumn = ({
   };
 
   const handleModify = async (name: string | undefined, emoji: string | undefined) => {
-    console.log(emoji);
-    console.log(name);
     if (user.user?.id && params.id) {
       await modifyTaskMutation({
         table_name: name || "",

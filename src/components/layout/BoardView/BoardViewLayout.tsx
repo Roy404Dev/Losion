@@ -1,6 +1,9 @@
 import "./BoardViewLayout.scss";
 import BoardViewColumn from "../BoardViewColumn/BoardViewColumn";
 import { TaskType } from "@/state/taskSlice/taskSlice";
+import { useMutation, useQueryClient } from "react-query";
+import { addTask } from "@/api/addData";
+import { modifyTask } from "@/api/modifyData";
 
 type Props = {
   tasks?: TaskType[];
