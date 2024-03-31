@@ -11,7 +11,7 @@ const DuplicateIcon = () => {
       viewBox="0 0 24 24"
       fontStyle="enable-background:new 0 0 512 512"
       xmlSpace="preserve"
-      className=""
+      className="duplicateIcon"
     >
       <g>
         <g data-name="Layer 2">
@@ -20,14 +20,14 @@ const DuplicateIcon = () => {
             fill="#000000"
             opacity="1"
             data-original="#000000"
-            className=""
+            className="duplicateIcon"
           ></path>
           <path
             d="M20.37 1h-9.74a2.629 2.629 0 0 0-2.421 1.61 1 1 0 1 0 1.842.78.63.63 0 0 1 .579-.39h9.74a.631.631 0 0 1 .63.63v12.74a.631.631 0 0 1-.63.63H18a1 1 0 0 0 0 2h2.37A2.633 2.633 0 0 0 23 16.37V3.63A2.633 2.633 0 0 0 20.37 1z"
             fill="#000000"
             opacity="1"
             data-original="#000000"
-            className=""
+            className="duplicateIcon"
           ></path>
         </g>
       </g>

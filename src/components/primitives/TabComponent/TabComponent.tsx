@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import "./TabComponent.scss";
 import { Link } from "react-router-dom";
-import { UUID } from "crypto";
 import ChevronRight from "@/assets/interface/ChevronRight";
 import TabActions from "../TabActions/TabActions";
 import TabModal from "@/components/modals/TabModal/TabModal";
@@ -11,7 +10,7 @@ type TabComponentType = {
   className: string;
   dataValue?: number;
   selectedTab?: number;
-  TaskId?: UUID;
+  tabId: string;
   setSelectedTab?: Dispatch<SetStateAction<number>>;
   showActions?: boolean;
 };
@@ -22,7 +21,7 @@ const TabComponent = ({
   dataValue,
   selectedTab,
   setSelectedTab,
-  TaskId,
+  tabId,
   showActions,
 }: TabComponentType) => {
   const [showMore, setShowMore] = useState(false);
@@ -35,7 +34,7 @@ const TabComponent = ({
 
   return (
     <Link
-      to={TaskId ?? "/"}
+      to={tabId ?? "/"}
       style={{ textDecoration: "none" }}
       className="app-aside-tab-link"
     >
@@ -63,7 +62,7 @@ const TabComponent = ({
           <TabActions modalState={showModal} setModalState={setShowModal} />
         )}
       </li>
-      {showModal && <TabModal />}
+      {showModal && <TabModal tab_id={tabId} />}
       {showMore && (
         <>
           <div className="BoardView-aside-tab" role="tab">

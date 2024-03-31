@@ -12,7 +12,7 @@ import { RootState } from "@/state/store";
 import { useParams } from "react-router";
 import { addNewTasks } from "@/state/taskSlice/taskSlice";
 import TaskListHeader from "../Headers/TaskListHeader/TaskListHeader";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getEmoji } from "@/hooks/getEmoji";
 import EmojiPicker from "@emoji-mart/react";
 import { ModifyTab } from "@/state/tab/tabSlice";
@@ -33,13 +33,19 @@ const TaskListLayout = () => {
   interface Emoji {
     unified: string;
   }
-  const setState = () => {
-    if (!FetchRan && tasks) {
-      dispatch(addNewTasks(tasks));
-    }
-    FetchRan = true;
-  };
-  if (tasks) setState();
+
+  useEffect(() => {
+    const setState = () => {
+      if (!FetchRan && tasks) {
+        dispatch(addNewTasks(tasks));
+      }
+      FetchRan = true;
+    };
+    if (!FetchRan) setState();
+    return () => {
+      FetchRan = true;
+    };
+  }, [tasks]);
 
   // name: string | null
   const handleChangeEmoji = async (e: Emoji) => {

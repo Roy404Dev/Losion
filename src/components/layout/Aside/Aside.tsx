@@ -31,16 +31,16 @@ const Aside = () => {
     staleTime: 1000 * 60 * 60,
   });
 
-  const {mutateAsync: addTabMutation} = useMutation({
+  const { mutateAsync: addTabMutation } = useMutation({
     mutationFn: AddPage,
-    onSuccess: () => queryClient.invalidateQueries(["tabs"])
-  })
+    onSuccess: () => queryClient.invalidateQueries(["tabs"]),
+  });
 
   const handleAddTab = async () => {
     if (tabsData && tabsData?.length > 10) return null; //Check if tab limit isn't reached
     await addTabMutation({
       userId: userId,
-      name: "",
+      name: "Untitled",
       emoji: "",
       template_id: 0,
     });
@@ -68,25 +68,41 @@ const Aside = () => {
             </span>
           </div>
           <ul className="app-aside-action-tabs">
-            <TabComponent className="aside-action-tab" dataValue={-1}>
+            <TabComponent
+              className="aside-action-tab"
+              dataValue={-1}
+              tabId="null"
+            >
               <button className="task-tab-button action-tab-button">
                 <SearchIcon />
                 Search
               </button>
             </TabComponent>
-            <TabComponent className="aside-action-tab" dataValue={-1}>
+            <TabComponent
+              className="aside-action-tab"
+              dataValue={-1}
+              tabId="null"
+            >
               <button className="task-tab-button action-tab-button">
                 <ClockIcon />
                 Updates
               </button>
             </TabComponent>
-            <TabComponent className="aside-action-tab" dataValue={-1}>
+            <TabComponent
+              className="aside-action-tab"
+              dataValue={-1}
+              tabId="null"
+            >
               <button className="task-tab-button action-tab-button">
                 <SettingsIcon />
                 Settings & members
               </button>
             </TabComponent>
-            <TabComponent className="aside-action-tab" dataValue={-1}>
+            <TabComponent
+              className="aside-action-tab"
+              dataValue={-1}
+              tabId="null"
+            >
               <button className="task-tab-button action-tab-button">
                 <AddIcon />
                 New Page
@@ -102,7 +118,7 @@ const Aside = () => {
                   selectedTab={selectedTab}
                   setSelectedTab={setSelectedTab}
                   key={index}
-                  TaskId={element.id}
+                  tabId={element.id}
                   showActions={true}
                 >
                   <button className="task-tab-button">

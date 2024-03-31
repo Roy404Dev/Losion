@@ -7,7 +7,6 @@ const TaskListHeader = ({ tabs }: TabsState) => {
   // const [selectedEmoji, setSelectedEmoji] = useState("");
 
   const handleChangeEmoji = () => {};
-
   return (
     <div className="taskListLayout__header">
       <div className="taskListLayout__header-row">
@@ -24,7 +23,7 @@ const TaskListHeader = ({ tabs }: TabsState) => {
             >
               <span className="task-name__emoji">{tabs[0]?.emoji}</span>
             </button>
-            <span className="task-name">{tabs[0]?.name}</span>
+            <span className="task-name">{tabs[0]?.name === "" ? "Untitled" : tabs[0]?.name}</span>
           </div>
         </div>
         <div className="taskListLayout__header__right__content">

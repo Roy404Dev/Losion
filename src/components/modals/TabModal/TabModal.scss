@@ -3,27 +3,58 @@
 .tab-modal {
   position: absolute;
   background-color: colors.getColor(secondary-darker-bg);
-  right: -50%;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 400;
+  max-width: 16.25rem;
+  width: 100%;
+  //Position
+  right: -70%;
   border-radius: 0.25em;
   z-index: 999;
+  //Font
+  font-weight: 400;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.875rem;
   line-height: 1.0625rem;
+  //Other styles
   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
   .tab-modal__wrapper {
-    padding: 0.8em 1em;
+    padding: 0.4em 0.25em;
     .tab-modal__actions-list {
       display: grid;
       list-style: none;
       .tab-modal__action {
+        padding: 0.3em 0.5em;
+        border-radius: 0.25em;
         text-align: start;
+        //Hover state
+        &:hover {
+          background-color: colors.getColor(hover-tab);
+        }
         .tab-modal__action-button {
           background-color: transparent;
           border: none;
+          display: flex;
+          align-items: center;
+          gap: 0.5em;
           cursor: pointer;
           color: colors.getColor(primary);
         }
+        //ICONS
+        .starIcon,
+        .copyLinkIcon,
+        .duplicateIcon,
+        .moveTo,
+        .renameToIcon,
+        .trashIcon {
+          height: 1em;
+          fill: colors.getColor(primary);
+        }
+      }
+      .tab-modal-divider-line {
+        height: 1px;
+        width: 100%;
+        content: "";
+        margin: 0.5em 0;
+        background-color: colors.getColor(light-dark-border);
       }
     }
   }

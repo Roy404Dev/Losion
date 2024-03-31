@@ -54,8 +54,9 @@
         border: none;
         cursor: pointer;
       }
-      .star-icon {
-        fill: colors.getColor(secondary);
+      .starIcon,
+      .ClockIconSvg {
+        fill: colors.getColor(primary);
       }
       .view-all-updates,
       .more-btn,
@@ -77,6 +78,13 @@
   .taskListLayout__header {
     border: none;
     .taskListLayout__header-row {
+      .taskListLayout__header__left__content {
+        .task-name-wrapper {
+          .taskListLayout__header-hamburgerMenu {
+            display: none;
+          }
+        }
+      }
       .taskListLayout__header__right__content {
         .edited-time-stamp,
         .share-btn {
