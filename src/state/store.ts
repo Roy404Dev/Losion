@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import tabSlice from "./tab/tabSlice";
 import userSlice from "./userSlice/userSlice";
 import taskSlice from "./taskSlice/taskSlice";
+import modalActionsSlice from "./modalActions/modalActionsSlice";
 
 export const store = configureStore({
   reducer: {
     tab: tabSlice,
     user: userSlice,
-    tasks: taskSlice
+    tasks: taskSlice,
+    modalActions: modalActionsSlice
   },
 });
 

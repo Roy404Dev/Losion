@@ -12,7 +12,7 @@ import { RootState } from "@/state/store";
 import { useParams } from "react-router";
 import { addNewTasks } from "@/state/taskSlice/taskSlice";
 import TaskListHeader from "../Headers/TaskListHeader/TaskListHeader";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getEmoji } from "@/hooks/getEmoji";
 import EmojiPicker from "@emoji-mart/react";
 import { ModifyTab } from "@/state/tab/tabSlice";
@@ -33,7 +33,7 @@ const TaskListLayout = () => {
   interface Emoji {
     unified: string;
   }
-
+  console.log(filteredTasks);
   useEffect(() => {
     const setState = () => {
       if (!FetchRan && tasks) {
@@ -63,12 +63,12 @@ const TaskListLayout = () => {
       id: filterTabs[0].id,
     };
     dispatch(ModifyTab(dataObj));
+    //TODO FIX HERE
     await modifyTabAPI({
       emoji: emoji,
-      id: filterTabs[0].id,
       name: filterTabs[0].name,
       user_id: userId,
-      tab_id: filterTabs[0].id,
+      id: filterTabs[0].id,
     });
   };
 

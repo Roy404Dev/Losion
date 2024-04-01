@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNewTab } from "@/state/tab/tabSlice";
 import SettingsIcon from "@/assets/interface/UI/SettingsIcon";
 import { RootState } from "@/state/store";
+import { useNavigate } from "react-router";
 
 const Aside = () => {
   const [ref] = useDragger();
@@ -24,6 +25,8 @@ const Aside = () => {
   const token = useSelector((state: RootState) => state.user.token);
   const { userId } = useAuth();
   const [selectedTab, setSelectedTab] = useState<number>(0);
+
+  const navigate = useNavigate();
 
   const { data: tabsData } = useQuery({
     queryFn: () => getTabs(userId || ""),
@@ -48,6 +51,8 @@ const Aside = () => {
   useEffect(() => {
     if (tabsData && !FetchRan && token != null) {
       dispatch(addNewTab({ tabs: tabsData }));
+      //When aside is loaded navigate user to first tab
+      navigate(`/${tabsData[0].id}`);
     }
     return () => {
       FetchRan = true;
@@ -120,6 +125,7 @@ const Aside = () => {
                   key={index}
                   tabId={element.id}
                   showActions={true}
+                  data={element}
                 >
                   <button className="task-tab-button">
                     {element.emoji} {element.name}

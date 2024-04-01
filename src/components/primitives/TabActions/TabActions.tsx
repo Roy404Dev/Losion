@@ -1,8 +1,7 @@
 import HorizontalElipsis from "@/assets/interface/HorizontalElipsis";
 import "./TabActions.scss";
 import PlusIcon from "@/assets/interface/PlusIcon";
-import { Dispatch, SetStateAction, useState } from "react";
-import TabModal from "@/components/modals/TabModal/TabModal";
+import { Dispatch, SetStateAction } from "react";
 
 type TabActionsType = {
   modalState: boolean;

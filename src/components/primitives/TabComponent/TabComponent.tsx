@@ -4,6 +4,19 @@ import { Link } from "react-router-dom";
 import ChevronRight from "@/assets/interface/ChevronRight";
 import TabActions from "../TabActions/TabActions";
 import TabModal from "@/components/modals/TabModal/TabModal";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state/store";
+import RenameAction from "@/components/modals/ActionsModal/RenameAction/RenameAction";
+
+export type tabDataType = {
+  created_at: string;
+  emoji: string;
+  id: string;
+  modified_at: string;
+  name: string;
+  template_id: string;
+  user_id: string;
+};
 
 type TabComponentType = {
   children: React.ReactNode;
@@ -13,6 +26,7 @@ type TabComponentType = {
   tabId: string;
   setSelectedTab?: Dispatch<SetStateAction<number>>;
   showActions?: boolean;
+  data?: tabDataType;
 };
 
 const TabComponent = ({
@@ -23,15 +37,22 @@ const TabComponent = ({
   setSelectedTab,
   tabId,
   showActions,
+  data,
 }: TabComponentType) => {
   const [showMore, setShowMore] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const selectedAction = useSelector(
+    (state: RootState) => state.modalActions.actionsInitial
+  );
+
   const handleClick = () => {
     if (dataValue && setSelectedTab) {
       setSelectedTab(dataValue);
     }
   };
-
+  const showAction =
+    selectedAction.selectedAction === "rename" &&
+    selectedAction.selectedTabId === data?.id;
   return (
     <Link
       to={tabId ?? "/"}
@@ -62,7 +83,16 @@ const TabComponent = ({
           <TabActions modalState={showModal} setModalState={setShowModal} />
         )}
       </li>
-      {showModal && <TabModal tab_id={tabId} />}
+      {showAction && (
+        <RenameAction inputEmoji={data?.emoji} inputValue={data?.name} tab_id={data.id} />
+      )}
+      {showModal && data && (
+        <TabModal
+          data={data}
+          setShowModalState={setShowModal}
+          showModalState={showModal}
+        />
+      )}
       {showMore && (
         <>
           <div className="BoardView-aside-tab" role="tab">

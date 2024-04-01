@@ -4,18 +4,25 @@ import "./AppPage.scss";
 import { Outlet } from "react-router";
 import { useAuth } from "@clerk/clerk-react";
 import { useDispatch } from "react-redux";
-import { addUserToken } from "@/state/userSlice/userSlice";
+import { addNewUser } from "@/state/userSlice/userSlice";
 const AppPage = () => {
-  const { getToken } = useAuth();
+  const { getToken, userId } = useAuth();
   const dispatch = useDispatch();
   let ran = true;
 
   useEffect(() => {
-    const fetchToken = async () => {
+    const setupUser = async () => {
       const token = await getToken({ template: "supabase" });
-      token && dispatch(addUserToken(token));
+      token &&
+        userId &&
+        dispatch(
+          addNewUser({
+            token: token,
+            userId: userId,
+          })
+        );
     };
-    if (ran) fetchToken();
+    if (ran) setupUser();
     return () => {
       ran = false;
     };

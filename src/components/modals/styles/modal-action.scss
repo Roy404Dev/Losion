@@ -1,0 +1,18 @@
+@use "../../../scss/abstracts/colors";
+.modal-action {
+  position: absolute;
+  background-color: colors.getColor(secondary-darker-bg);
+  .modal-action__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      background-color: transparent;
+      border: none;
+    }
+    input {
+      border: none;
+      background-color: transparent;
+    }
+  }
+}

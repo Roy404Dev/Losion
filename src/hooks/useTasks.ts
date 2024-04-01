@@ -11,12 +11,12 @@ const useTasks = () => {
   const userId = auth.userId || null;
   const taskId = params.id || null;
   const query = useQuery({
-    queryKey: ["taskLayout", {taskId}],
-    queryFn: () => getUserTask(taskId, token, userId),
+    queryKey: ["taskLayout", { taskId }],
+    queryFn: () => getUserTask(taskId, userId),
     enabled: userId !== null && taskId !== null && token !== null,
     staleTime: 60 * 60 * 1000,
   });
-  if(!query.data) return null;
+  if (!query.data) return null;
   return query.data;
 };
 

@@ -20,7 +20,6 @@ type tabType = {
   emoji: string;
   name: string;
   user_id: string;
-  tab_id: string;
 };
 
 export const modifyTask = async ({
@@ -50,10 +49,10 @@ export const modifyTask = async ({
   return data;
 };
 
-export const modifyTabAPI = async ({ name, user_id, emoji, tab_id }: tabType) => {
+export const modifyTabAPI = async ({ name, user_id, emoji, id}: tabType) => {
   const client = supabase();
   const { data, error } = await client.from("userTabs").upsert({
-    id: tab_id,
+    id: id,
     emoji: emoji,
     name: name,
     user_id: user_id,
