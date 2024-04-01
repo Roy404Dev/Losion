@@ -1,6 +1,6 @@
 // export const modifyTask = async () => {
 
-import createClerkSupabaseClient from "@/lib/supabaseClient";
+import supabase from "@/lib/supabaseClient";
 
 // }
 
@@ -32,7 +32,7 @@ export const modifyTask = async ({
   tab_id,
   task_id,
 }: taskType) => {
-  const client = createClerkSupabaseClient();
+  const client = supabase();
   const { data, error } = await client.from("task_list_template").upsert({
     id: task_id,
     created_at: new Date().toISOString(),
@@ -51,7 +51,7 @@ export const modifyTask = async ({
 };
 
 export const modifyTabAPI = async ({ name, user_id, emoji, tab_id }: tabType) => {
-  const client = createClerkSupabaseClient();
+  const client = supabase();
   const { data, error } = await client.from("userTabs").upsert({
     id: tab_id,
     emoji: emoji,

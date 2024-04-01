@@ -1,5 +1,6 @@
-import createClerkSupabaseClient from "@/lib/supabaseClient";
+import supabase from "@/lib/supabaseClient";
 
+// import createClerkSupabaseClient, { supabaseClerk } from "@/lib/supabaseClient";
 type taskType = {
   id: string;
   user_id: any;
@@ -23,7 +24,7 @@ export const AddPage = async ({
   emoji,
   template_id,
 }: AddPageType) => {
-  const client = createClerkSupabaseClient();
+  const client = supabase();
   const { data, error } = await client.from("userTabs").insert({
     created_at: new Date().toISOString(),
     emoji: emoji,
@@ -49,7 +50,7 @@ export const addTask = async ({
   emoji,
   tab_id,
 }: taskType) => {
-  const client = createClerkSupabaseClient();
+  const client = supabase();
   const { data, error } = await client.from("task_list_template").insert({
     id: id,
     created_at: new Date().toISOString(),
@@ -72,7 +73,7 @@ export const modifyTab = async ({
   emoji,
   template_id,
 }: AddPageType) => {
-  const client = createClerkSupabaseClient();
+  const client = supabase();
   let updateObject: any = {};
 
   if (name !== undefined) {
@@ -88,7 +89,6 @@ export const modifyTab = async ({
     .from("userTabs")
     .update(updateObject)
     .eq("userId", userId);
-
   if (error) {
     console.error("Error updating data:", error.message);
     return null;
