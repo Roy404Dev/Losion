@@ -33,7 +33,6 @@ const TabModal = ({
   });
 
   const clickEvent = (e: MouseEvent<HTMLElement>) => {
-    // setSelectedAction(e.currentTarget.dataset.id);
     if (e.currentTarget.dataset.id) {
       dispatch(
         addModalAction({
@@ -49,82 +48,76 @@ const TabModal = ({
   };
 
   return (
-    <>
-      <div className="tab-modal">
-        <div className="tab-modal__wrapper">
-          {userId && (
-            <ul className="tab-modal__actions-list">
-              <li className="tab-modal__action">
-                <button
-                  className="tab-modal__action-button"
-                  id="add-to-favorites"
-                >
-                  <StarIcon />
-                  Add to Favorites
-                </button>
-              </li>
-              <div className="tab-modal-divider-line"></div>
-              <li
-                className="tab-modal__action"
-                data-id="copy-link"
-                onClick={clickEvent}
+    <div className="tab-modal">
+      <div className="tab-modal__wrapper">
+        {userId && (
+          <ul className="tab-modal__actions-list">
+            <li className="tab-modal__action">
+              <button
+                className="tab-modal__action-button"
+                id="add-to-favorites"
               >
-                <button className="tab-modal__action-button">
-                  <CopyLinkIcon />
-                  Copy link
-                </button>
-              </li>
-              <li
-                className="tab-modal__action"
-                data-id="duplicate"
-                onClick={clickEvent}
-              >
-                <button className="tab-modal__action-button">
-                  <DuplicateIcon />
-                  Duplicate
-                </button>
-              </li>
-              <li
-                className="tab-modal__action"
-                data-id="rename"
-                onClick={clickEvent}
-              >
-                <button className="tab-modal__action-button">
-                  <RenameIcon />
-                  Rename
-                </button>
-              </li>
-              <li
-                className="tab-modal__action"
-                data-id="move-to"
-                onClick={clickEvent}
-              >
-                <button className="tab-modal__action-button">
-                  <MoveToIcon />
-                  Move to
-                </button>
-              </li>
-              <li
-                className="tab-modal__action"
-                data-id="delete"
-                onClick={() =>
-                  deleteTabMutation({ tab_id: data.id, user_id: data.user_id })
-                }
-              >
-                <button className="tab-modal__action-button">
-                  <TrashIcon />
-                  Delete
-                </button>
-              </li>
-            </ul>
-          )}
-          {/* <TabModalActionContainer selectedAction={null} /> */}
-        </div>
+                <StarIcon />
+                Add to Favorites
+              </button>
+            </li>
+            <div className="tab-modal-divider-line"></div>
+            <li
+              className="tab-modal__action"
+              data-id="copy-link"
+              onClick={clickEvent}
+            >
+              <button className="tab-modal__action-button">
+                <CopyLinkIcon />
+                Copy link
+              </button>
+            </li>
+            <li
+              className="tab-modal__action"
+              data-id="duplicate"
+              onClick={clickEvent}
+            >
+              <button className="tab-modal__action-button">
+                <DuplicateIcon />
+                Duplicate
+              </button>
+            </li>
+            <li
+              className="tab-modal__action"
+              data-id="rename"
+              onClick={clickEvent}
+            >
+              <button className="tab-modal__action-button">
+                <RenameIcon />
+                Rename
+              </button>
+            </li>
+            <li
+              className="tab-modal__action"
+              data-id="move-to"
+              onClick={clickEvent}
+            >
+              <button className="tab-modal__action-button">
+                <MoveToIcon />
+                Move to
+              </button>
+            </li>
+            <li
+              className="tab-modal__action"
+              data-id="delete"
+              onClick={() =>
+                deleteTabMutation({ tab_id: data.id, user_id: data.user_id })
+              }
+            >
+              <button className="tab-modal__action-button">
+                <TrashIcon />
+                Delete
+              </button>
+            </li>
+          </ul>
+        )}
       </div>
-      {/* {selectedAction === "rename" && (
-        <RenameAction inputValue={data.name} inputEmoji={data.emoji} />
-      )} */}
-    </>
+    </div>
   );
 };
 

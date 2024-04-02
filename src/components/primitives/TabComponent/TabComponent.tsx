@@ -95,11 +95,14 @@ const TabComponent = ({
         </>
       )}
       {showModal && data && (
-        <TabModal
-          data={data}
-          setShowModalState={setShowModal}
-          showModalState={showModal}
-        />
+        <>
+          <TabModal
+            data={data}
+            setShowModalState={setShowModal}
+            showModalState={showModal}
+          />
+          <div className="modal-overlay-bg"></div>
+        </>
       )}
       {showMore && (
         <>
