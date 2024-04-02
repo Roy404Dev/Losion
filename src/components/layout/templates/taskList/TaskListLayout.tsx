@@ -33,7 +33,6 @@ const TaskListLayout = () => {
   interface Emoji {
     unified: string;
   }
-  console.log(filteredTasks);
   useEffect(() => {
     const setState = () => {
       if (!FetchRan && tasks) {

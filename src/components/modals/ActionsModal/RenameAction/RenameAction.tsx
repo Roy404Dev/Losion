@@ -4,6 +4,11 @@ import { modifyTabAPI } from "@/api/modifyData";
 import { useMutation, useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
+import "./RenameAction.scss";
+import EmojiPickerBtn from "@/components/primitives/EmojiPickerBtn/EmojiPickerBtn";
+import { EmojiType } from "@/components/TaskWrapper/TaskWrapper";
+import { getEmoji } from "@/hooks/getEmoji";
+
 type RenameActionType = {
   inputValue: string | undefined;
   inputEmoji: string | undefined;
@@ -17,6 +22,7 @@ const RenameAction = ({ inputValue, inputEmoji, tab_id }: RenameActionType) => {
     inputValue: inputValue || "",
     inputEmoji: inputEmoji || "📄",
   });
+
   const queryClient = useQueryClient();
   const { mutateAsync: renameActionMutation } = useMutation({
     mutationFn: modifyTabAPI,
@@ -33,19 +39,28 @@ const RenameAction = ({ inputValue, inputEmoji, tab_id }: RenameActionType) => {
     });
   };
 
+  const setEmoji = (e: EmojiType) => {
+    const emoji = getEmoji(e);
+    setInput({ ...input, inputEmoji: emoji });
+  };
+
   return (
     <div
       className="rename-action modal-action"
-      onClick={() => handleRenameAction()}
+      onKeyDown={(e) => (e.key === "Enter" ? handleRenameAction() : "")}
     >
       <div className="modal-action__wrapper">
-        <button>{input.inputEmoji}</button>
+        <EmojiPickerBtn state={input.inputEmoji} onChangeFunc={setEmoji} />
         <input
+          className="modal-action-input"
           type="text"
           value={input.inputValue}
+          placeholder="Untitled"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setInput({ ...input, inputValue: e.target.value })
           }
+          tabIndex={0}
+          maxLength={25}
         />
       </div>
     </div>

@@ -18,6 +18,10 @@ type taskWrapper = {
   emoji?: string;
 };
 
+export type EmojiType = {
+  unified: string;
+};
+
 const TaskWrapper = ({
   children,
   customKey,
@@ -32,11 +36,7 @@ const TaskWrapper = ({
   const [emojiData, setEmojiData] = useState<string | undefined>(undefined);
   const [showActionModal, setShowActionModal] = useState(false);
   let isEditable = editBoolean.taskId === customKey;
-  interface Emoji {
-    unified: string;
-    // Add more properties if necessary
-  }
-  const addEmoji = (e: Emoji) => {
+  const addEmoji = (e: EmojiType) => {
     const emoji = getEmoji(e);
     setEmojiData(emoji);
     setShowEmojiPicker(!showEmojiPicker);

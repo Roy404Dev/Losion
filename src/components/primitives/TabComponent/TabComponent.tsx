@@ -84,7 +84,14 @@ const TabComponent = ({
         )}
       </li>
       {showAction && (
-        <RenameAction inputEmoji={data?.emoji} inputValue={data?.name} tab_id={data.id} />
+        <>
+          <RenameAction
+            inputEmoji={data?.emoji}
+            inputValue={data?.name}
+            tab_id={data.id}
+          />
+          <div className="modal-overlay-bg"></div>
+        </>
       )}
       {showModal && data && (
         <TabModal

@@ -1,0 +1,36 @@
+//Default styling
+@use "../../../../scss/abstracts/colors";
+@use "../../../../scss/base/variables";
+.rename-action {
+  position: absolute;
+  left: 10%;
+  z-index: 999;
+  background-color: colors.getColor(secondary-darker-bg);
+  font-family: variables.$ff-segoe;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.262);
+  border-radius: 0.25em;
+  .modal-action__wrapper {
+    padding: 0.3em 0.4em;
+    display: flex;
+    gap: 0.5em;
+    .modal-action-emoji-btn {
+      background-color: transparent;
+      cursor: pointer;
+      border: 1px solid colors.getColor(light-dark-border);
+      border-radius: 0.25em;
+    }
+    .modal-action-input {
+      background-color: colors.getColor(modal-input);
+      border: 1px solid colors.getColor(light-dark-border);
+      border-radius: 0.25em;
+      color: colors.getColor(text-not-selected);
+      font-size: 14px;
+      outline: none;
+      font-weight: 400;
+      padding: 0.2rem 0.5em;
+      &:focus-visible {
+        outline: 2px solid colors.getColor(secondary-border);
+      }
+    }
+  }
+}

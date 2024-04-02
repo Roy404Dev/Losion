@@ -54,6 +54,18 @@
       background-color: colors.getColor(secondary-bg);
     }
   }
+  //OVERLAY
+  .modal-overlay-bg {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    content: "";
+    z-index: 998;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
   .aside-task-tab--selected {
     background-color: colors.getColor(secondary-bg);
     .task-tab-button {

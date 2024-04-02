@@ -52,7 +52,8 @@ const Aside = () => {
     if (tabsData && !FetchRan && token != null) {
       dispatch(addNewTab({ tabs: tabsData }));
       //When aside is loaded navigate user to first tab
-      navigate(`/${tabsData[0].id}`);
+      // navigate(`/${tabsData[0].id}`);
+      //TODO
     }
     return () => {
       FetchRan = true;

@@ -6,9 +6,8 @@
     height: 100%;
     width: 100%;
     //Overflow scroll on phones
-    overflow-x: scroll;
+    // overflow-x: scroll;
     margin-top: 3em;
-    height: 100vh;
     .BoardViewLayout_col {
       display: flex;
       flex-direction: column;
@@ -71,7 +70,13 @@
 }
 
 @media screen and (min-width: 768px) {
-  .BoardViewLayout_col {
-    width: 100%;
+  .BoardViewLayout_wrapper {
+    .BoardViewLayout_rows {
+      //Overflow scroll on phones
+      // overflow-x: scroll;
+      .BoardViewLayout_col {
+        width: 100%;
+      }
+    }
   }
 }

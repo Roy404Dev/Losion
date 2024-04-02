@@ -2,14 +2,13 @@
 
 .TaskListLayout {
   width: 100%;
-  // padding: 0.5em 1.5em;
   user-select: none;
   height: 100vh;
-
   .TaskListLayout__content {
     max-width: 90%;
     margin: 0 auto;
     margin-top: 2em;
+    padding: 0 2.2em;
     //====Scroll Bar======
     &::-webkit-scrollbar {
       width: 1em;
