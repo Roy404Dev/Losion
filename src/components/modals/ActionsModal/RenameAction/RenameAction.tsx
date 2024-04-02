@@ -2,12 +2,13 @@ import { useState } from "react";
 import "../../styles/modal-action.scss";
 import { modifyTabAPI } from "@/api/modifyData";
 import { useMutation, useQueryClient } from "react-query";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import "./RenameAction.scss";
 import EmojiPickerBtn from "@/components/primitives/EmojiPickerBtn/EmojiPickerBtn";
 import { EmojiType } from "@/components/TaskWrapper/TaskWrapper";
 import { getEmoji } from "@/hooks/getEmoji";
+import { addModalAction } from "@/state/modalActions/modalActionsSlice";
 
 type RenameActionType = {
   inputValue: string | undefined;
@@ -23,6 +24,8 @@ const RenameAction = ({ inputValue, inputEmoji, tab_id }: RenameActionType) => {
     inputEmoji: inputEmoji || "📄",
   });
 
+  const dispatch = useDispatch();
+
   const queryClient = useQueryClient();
   const { mutateAsync: renameActionMutation } = useMutation({
     mutationFn: modifyTabAPI,
@@ -31,6 +34,15 @@ const RenameAction = ({ inputValue, inputEmoji, tab_id }: RenameActionType) => {
 
   const handleRenameAction = async () => {
     if (!userId) return null;
+    //Toggle action
+    dispatch(
+      addModalAction({
+        actionsInitial: {
+          selectedAction: "",
+          selectedTabId: "",
+        },
+      })
+    );
     await renameActionMutation({
       emoji: input.inputEmoji,
       id: tab_id,

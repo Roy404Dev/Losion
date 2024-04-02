@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNewTab } from "@/state/tab/tabSlice";
 import SettingsIcon from "@/assets/interface/UI/SettingsIcon";
 import { RootState } from "@/state/store";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 
 const Aside = () => {
   const [ref] = useDragger();
@@ -26,7 +26,7 @@ const Aside = () => {
   const { userId } = useAuth();
   const [selectedTab, setSelectedTab] = useState<number>(0);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { data: tabsData } = useQuery({
     queryFn: () => getTabs(userId || ""),

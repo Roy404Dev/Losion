@@ -44,15 +44,16 @@ const TabComponent = ({
   const selectedAction = useSelector(
     (state: RootState) => state.modalActions.actionsInitial
   );
+  const showAction =
+    selectedAction.selectedAction === "rename" &&
+    selectedAction.selectedTabId === data?.id;
 
   const handleClick = () => {
     if (dataValue && setSelectedTab) {
       setSelectedTab(dataValue);
     }
   };
-  const showAction =
-    selectedAction.selectedAction === "rename" &&
-    selectedAction.selectedTabId === data?.id;
+
   return (
     <Link
       to={tabId ?? "/"}
@@ -83,7 +84,7 @@ const TabComponent = ({
           <TabActions modalState={showModal} setModalState={setShowModal} />
         )}
       </li>
-      {showAction && (
+      {showAction && data && (
         <>
           <RenameAction
             inputEmoji={data?.emoji}
