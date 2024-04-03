@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Picker from "@emoji-mart/react";
 import { EmojiType } from "@/components/TaskWrapper/TaskWrapper";
-
+import "./EmojiPickerBtn.scss";
 type Emojipicker = {
   state: string;
   onChangeFunc: (e: EmojiType) => void;

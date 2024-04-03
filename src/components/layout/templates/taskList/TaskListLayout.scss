@@ -21,12 +21,15 @@
       background-color: red;
       outline: 1px solid slategrey;
     }
+
     //====================
     .taskListLayout__sub-message {
       .task-name-wrapper {
         color: colors.getColor(primary);
         font-size: clamp(1rem, 2vw, 3rem);
         font-weight: 600;
+        display: flex;
+        gap: 0.25em;
         .task-change-emoji {
           background-color: transparent;
           border: none;
@@ -35,6 +38,10 @@
           &:hover {
             background-color: colors.getColor(secondary-darker-bg);
           }
+        }
+        em-emoji-picker {
+          position: absolute;
+          z-index: 999;
         }
       }
       .task-message-paragraph {

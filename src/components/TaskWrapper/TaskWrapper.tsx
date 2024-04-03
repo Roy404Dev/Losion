@@ -36,12 +36,15 @@ const TaskWrapper = ({
   const [emojiData, setEmojiData] = useState<string | undefined>(undefined);
   const [showActionModal, setShowActionModal] = useState(false);
   let isEditable = editBoolean.taskId === customKey;
+
   const addEmoji = (e: EmojiType) => {
     const emoji = getEmoji(e);
     setEmojiData(emoji);
     setShowEmojiPicker(!showEmojiPicker);
   };
+
   let fetchRan = false;
+
   useEffect(() => {
     if (!fetchRan) {
       if (inputRef.current) {

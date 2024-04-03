@@ -66,6 +66,9 @@
     left: 0;
     right: 0;
   }
+  em-emoji-picker {
+    position: absolute;
+  }
   .aside-task-tab--selected {
     background-color: colors.getColor(secondary-bg);
     .task-tab-button {
