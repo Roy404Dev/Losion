@@ -9,6 +9,10 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "files": [
+    "*.js.map",
+    "dist"
+  ],
   "dependencies": {
     "@clerk/clerk-react": "^4.30.5",
     "@emoji-mart/data": "^1.1.2",
