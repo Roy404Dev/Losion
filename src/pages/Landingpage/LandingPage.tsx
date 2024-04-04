@@ -22,7 +22,6 @@ const LandingPage = () => {
         <img
           className="background-image"
           srcSet="/home-hero-phone.jpg 400w, /home-hero-main.jpg 800w"
-          loading="lazy"
           role="presentation"
           alt=""
         />
