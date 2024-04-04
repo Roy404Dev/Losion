@@ -101,13 +101,20 @@ const TaskListLayout = () => {
         <div className="taskListLayout__wrapper">
           <div className="losion-selectable losion-collection_view_page-block">
             <ul className="losion-tab-list" role="tabList">
-              <li className="losion-collection-view-tab-button losion-collection-view-tab-button__selected">
+              <li
+                className="losion-collection-view-tab-button losion-collection-view-tab-button__selected"
+                role="tabElement"
+              >
                 <button>
                   <BoardIcon />
                   Board View
                 </button>
               </li>
-              <li className="losion-collection-view-tab-button losion-collection-view-tab-table">
+              <li
+                className="losion-collection-view-tab-button losion-collection-view-tab-table"
+                role="tabElement"
+                aria-label="table"
+              >
                 <button>
                   <TableIcon />
                   Table
@@ -116,22 +123,22 @@ const TaskListLayout = () => {
             </ul>
             <ol className="losion-action-list">
               <li className="losion-collection-action">
-                <button className="losion-collection-action-button">
+                <button className="losion-collection-action-button" aria-label="filter">
                   Filter
                 </button>
               </li>
               <li className="losion-collection-action">
-                <button className="losion-collection-action-button">
+                <button className="losion-collection-action-button" aria-label="filter">
                   Sort
                 </button>
               </li>
               <li className="losion-collection-action">
-                <button className="losion-collection-action-button">
+                <button className="losion-collection-action-button" aria-label="lightning">
                   <LightningIcon />
                 </button>
               </li>
               <li className="losion-collection-action">
-                <button className="losion-collection-action-button">
+                <button className="losion-collection-action-button" aria-label="search">
                   <SearchIcon />
                 </button>
               </li>

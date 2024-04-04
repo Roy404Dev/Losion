@@ -70,6 +70,7 @@ const TabComponent = ({
         <button
           className="task-tab-show-more"
           onClick={() => setShowMore(!showMore)}
+          aria-label="show more"
         >
           <ChevronRight
             additionalClassName={

@@ -23,7 +23,9 @@ const TaskListHeader = ({ tabs }: TabsState) => {
             >
               <span className="task-name__emoji">{tabs[0]?.emoji}</span>
             </button>
-            <span className="task-name">{tabs[0]?.name === "" ? "Untitled" : tabs[0]?.name}</span>
+            <span className="task-name">
+              {tabs[0]?.name === "" ? "Untitled" : tabs[0]?.name}
+            </span>
           </div>
         </div>
         <div className="taskListLayout__header__right__content">
@@ -32,13 +34,18 @@ const TaskListHeader = ({ tabs }: TabsState) => {
           <button
             className="view-all-updates"
             aria-labelledby="view all updates"
+            aria-label="view all updates"
           >
             <ClockIcon />
           </button>
-          <button className="add-to-favorite">
+          <button className="add-to-favorite" aria-label="add to favorite">
             <StarIcon />
           </button>
-          <button className="more-btn" aria-labelledby="Style, export and more">
+          <button
+            className="more-btn"
+            aria-labelledby="Style, export and more"
+            aria-label="show more"
+          >
             <HorizontalElipsis />
           </button>
         </div>

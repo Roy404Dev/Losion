@@ -70,6 +70,7 @@ const TaskWrapper = ({
         <button
           className="selectIconBtn"
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+          aria-label="select icon"
         >
           {emojiData ? (
             <span className="selectedEmoji">{emojiData}</span>
