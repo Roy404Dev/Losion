@@ -22,6 +22,7 @@ const LandingPage = () => {
         <img
           className="background-image"
           srcSet="/home-hero.webp 1x, /home-hero.webp 2x"
+          alt=""
         />
       </main>
     </div>
