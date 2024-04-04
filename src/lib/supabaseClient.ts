@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { SupabaseAuthClientOptions } from "@supabase/supabase-js/dist/module/lib/types";
 
 // Add clerk to Window to avoid type errors
 declare global {
@@ -6,6 +7,12 @@ declare global {
     Clerk: any;
   }
 }
+
+const supabaseOptions: SupabaseAuthClientOptions = {
+  autoRefreshToken: true,
+  persistSession: true,
+  detectSessionInUrl: true,
+};
 
 const client = createClient(
   import.meta.env.VITE_SUPABASE_URL!,
@@ -29,6 +36,7 @@ const client = createClient(
         });
       },
     },
+    auth: supabaseOptions,
   }
 );
 

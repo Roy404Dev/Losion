@@ -1,20 +1,24 @@
+@use "../../scss/abstracts/colors";
 .appPage {
   background-color: #191919;
   display: flex;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
-.root {
-  &::-webkit-scrollbar {
-    width: 1em;
-  }
+body {
   &::-webkit-scrollbar-track {
-    width: 1em;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: colors.getColor(primary-bg);
   }
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: colors.getColor(primary-bg);
+  }
+
   &::-webkit-scrollbar-thumb {
-    background-color: red;
-    outline: 1px solid slategrey;
+    // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: colors.getColor(main-scrollBar);
   }
 }
 
