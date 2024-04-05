@@ -6,6 +6,7 @@ import Picker from "@emoji-mart/react";
 import PageIcon from "@/assets/interface/icons/PageIcon";
 import ActionsModal from "../modals/ActionsModal/ActionsModal";
 import { getEmoji } from "@/hooks/getEmoji";
+import { useDragTask } from "@/hooks/useDragTask";
 
 type taskWrapper = {
   children: JSX.Element;
@@ -16,6 +17,7 @@ type taskWrapper = {
     taskId: string;
   };
   emoji?: string;
+  order: number;
 };
 
 export type EmojiType = {
@@ -29,6 +31,7 @@ const TaskWrapper = ({
   setEditBoolean,
   customFunc,
   emoji,
+  order
 }: taskWrapper) => {
   const [name, setName] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -36,6 +39,7 @@ const TaskWrapper = ({
   const [emojiData, setEmojiData] = useState<string | undefined>(undefined);
   const [showActionModal, setShowActionModal] = useState(false);
   let isEditable = editBoolean.taskId === customKey;
+  const [ref] = useDragTask();
 
   const addEmoji = (e: EmojiType) => {
     const emoji = getEmoji(e);
@@ -62,8 +66,11 @@ const TaskWrapper = ({
   return (
     <div
       className="taskWrapper"
+      data-id="task"
+      data-order={order}
       key={customKey}
       onKeyDown={(e) => (e.key === "Enter" ? customFunc(name, emojiData) : "")}
+      ref={ref}
     >
       {showEmojiPicker && <Picker onEmojiSelect={addEmoji} />}
       <div className="taskWrapper-row-content">

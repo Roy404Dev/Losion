@@ -51,6 +51,7 @@ const BoardViewColumn = ({
   const [isEditable, setIsEditable] = useState({
     taskId: "",
   });
+
   const handleAddTask = async () => {
     if (user.user?.id && params.id) {
       try {
@@ -95,7 +96,7 @@ const BoardViewColumn = ({
   };
 
   return (
-    <div className="BoardViewLayout_col">
+    <div className="BoardViewLayout_col" data-status={statusName}>
       <div className="losion-group-status">
         <span className={`losion-group-status-text ${taskClassName}`}>
           {statusTitle}
@@ -108,6 +109,7 @@ const BoardViewColumn = ({
             <TaskWrapper
               customKey={sortedTask.id}
               key={index}
+              order={index}
               customFunc={handleModify}
               editBoolean={isEditable}
               setEditBoolean={setIsEditable}

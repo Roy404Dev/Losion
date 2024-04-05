@@ -109,7 +109,7 @@ const Aside = () => {
               dataValue={-1}
               tabId="null"
             >
-              <button className="task-tab-button action-tab-button">
+              <button className="task-tab-button action-tab-button" onClick={handleAddTab}>
                 <AddIcon />
                 New Page
               </button>

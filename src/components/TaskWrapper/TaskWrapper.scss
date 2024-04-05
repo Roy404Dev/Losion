@@ -107,3 +107,17 @@
     }
   }
 }
+
+//Clone disabled hover
+
+.task-clone-drag-mode {
+  pointer-events: none;
+  .selectIconBtn {
+    background-color: colors.getColor(hover-light);
+  }
+  background-color: colors.getColor(selected-bg);
+  .taskWrapper__hover-menu {
+    visibility: visible;
+    opacity: 1;
+  }
+}
