@@ -35,8 +35,8 @@ export const useDragTask = () => {
       const startPos = {
         left: taskClone.style.left,
         top: taskClone.style.top,
-        x: taskClone.offsetLeft,
-        y: taskClone.offsetTop,
+        x: e.clientX,
+        y: e.clientY,
       };
       //Dimensions
       const todoPosition = {
@@ -48,30 +48,53 @@ export const useDragTask = () => {
       //Get task height and bottom
       const taskCloneParent = taskClone.parentElement;
       //Get all tasks from clone column
-      const allTasks = taskCloneParent?.querySelectorAll("[data-id=task]");
-      const tasksAmount = allTasks?.length;
+      const allTasks =
+        taskCloneParent?.querySelectorAll<HTMLElement>("[data-id=task]");
+      const tasksAmount = allTasks?.length || 0;
 
-      const handleMouseMove = (e: globalThis.MouseEvent) => {
-        //taskClone.offsetWidth is added to make sure task is the same position as the cursor
-        const dx = e.clientX - startPos.x + taskClone.offsetWidth / 2;
-        const dy = e.clientY - startPos.y + taskClone.offsetHeight / 2;
-        todoDimensions.style.transition = "200ms ease";
-        const position = Math.ceil(Math.abs(dy) / taskClone.clientHeight);
-        const selectElement = taskCloneParent?.querySelector(
-          `[data-order="${position}"]`
-        ) as HTMLElement;
-        if (dx > todoPosition.xStart && dx < todoPosition.xEnd) {
-          // todoDimensions.style.boxShadow = "0 5px 0 #2a4a6e inset";
-          //Set style
+      const calcPosition = (
+        dy: number,
+        taskHeight: number,
+        maxTasks: number
+      ) => {
+        console.log("call");
+        if (maxTasks < Math.ceil(dy / taskHeight)) return maxTasks;
+        if (Math.ceil(dy / taskHeight) < 0) return 1;
+        return Math.ceil(Math.abs(dy) / taskHeight);
+      };
+
+      const applyStyle = (selectElement: HTMLElement) => {
+        if (e.clientX > todoPosition.xStart && e.clientX < todoPosition.xEnd) {
+          //Remove styles from previous
+          allTasks?.forEach((element) => {
+            element.style.boxShadow = "none";
+          });
+          //If selected element exists apply styles
           if (selectElement) {
             selectElement.style.boxShadow = "0 -5px 0 #2a4a6e inset";
           }
         } else {
-          // todoDimensions.style.boxShadow = "none";
           if (selectElement) {
             selectElement.style.boxShadow = "none";
           }
         }
+      };
+
+      const handleMouseMove = (e: globalThis.MouseEvent) => {
+        //taskClone.offsetWidth is added to make sure task is the same position as the cursor
+        // const dx = e.clientX - startPos.x + taskClone.offsetWidth / 2;
+        const dy = e.clientY - startPos.y + taskClone.offsetHeight / 2;
+        todoDimensions.style.transition = "200ms ease";
+        //Calculate position where should task be placed
+        const position = calcPosition(dy, taskClone.clientHeight, tasksAmount);
+
+        const selectElement = taskCloneParent?.querySelector(
+          `[data-order="${position}"]`
+        ) as HTMLElement;
+
+        //Apply style to selected element
+        applyStyle(selectElement);
+
         requestAnimationFrame(() => {
           taskClone.style.top = `${e.clientY - taskClone.offsetHeight / 2}px`;
           taskClone.style.left = `${e.clientX - taskClone.offsetWidth / 2}px`;
@@ -83,6 +106,11 @@ export const useDragTask = () => {
         document.removeEventListener("mousemove", handleMouseMove);
         document.removeEventListener("mouseup", handleMouseUp);
         todoDimensions.style.boxShadow = "none";
+        //Remove styles from previous
+
+        allTasks?.forEach((element) => {
+          element.style.boxShadow = "none";
+        });
         taskClone.remove();
       };
       //Adding event listener's

@@ -109,7 +109,7 @@ const BoardViewColumn = ({
             <TaskWrapper
               customKey={sortedTask.id}
               key={index}
-              order={index}
+              order={index + 1}
               customFunc={handleModify}
               editBoolean={isEditable}
               setEditBoolean={setIsEditable}
