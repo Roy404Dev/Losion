@@ -1,10 +1,18 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router";
+
+type selectedTaskNewDataType = {
+  task_id: null | string;
+  status: string;
+  order: null | number;
+};
 
 export const useDragTask = () => {
   const [node, setNode] = React.useState<HTMLElement | null>(null);
   const ref = React.useCallback((nodeEle: HTMLDivElement) => {
     setNode(nodeEle);
   }, []);
+  const params = useParams();
 
   const todoDimensions = document.querySelector(
     '[data-status="todo"]'
@@ -15,6 +23,12 @@ export const useDragTask = () => {
   const doneDimentions = document.querySelector(
     "[data-status=done]"
   ) as HTMLElement;
+
+  const selectedTaskNewData: selectedTaskNewDataType = {
+    task_id: null,
+    status: "",
+    order: null,
+  };
 
   const handleMouseDown = React.useCallback(
     (e: MouseEvent) => {
@@ -38,6 +52,7 @@ export const useDragTask = () => {
         x: e.clientX,
         y: e.clientY,
       };
+
       //Dimensions
       const todoPosition = {
         xStart: todoDimensions.getBoundingClientRect().x,
@@ -57,7 +72,6 @@ export const useDragTask = () => {
         taskHeight: number,
         maxTasks: number
       ) => {
-        console.log("call");
         if (maxTasks < Math.ceil(dy / taskHeight)) return maxTasks;
         if (Math.ceil(dy / taskHeight) < 0) return 1;
         return Math.ceil(Math.abs(dy) / taskHeight);
@@ -79,6 +93,19 @@ export const useDragTask = () => {
           }
         }
       };
+      //Tracks position and saves to localstorage.
+      setTimeout(() => {
+        localStorage.setItem(
+          `taskOrder-${params.id}`,
+          JSON.stringify([
+            {
+              taskId: node.dataset?.taskid,
+              status: selectedTaskNewData.status,
+              order: selectedTaskNewData.order,
+            },
+          ])
+        );
+      }, 1000);
 
       const handleMouseMove = (e: globalThis.MouseEvent) => {
         //taskClone.offsetWidth is added to make sure task is the same position as the cursor
@@ -87,6 +114,8 @@ export const useDragTask = () => {
         todoDimensions.style.transition = "200ms ease";
         //Calculate position where should task be placed
         const position = calcPosition(dy, taskClone.clientHeight, tasksAmount);
+        if (selectedTaskNewData.order != position)
+          selectedTaskNewData.order = position;
 
         const selectElement = taskCloneParent?.querySelector(
           `[data-order="${position}"]`

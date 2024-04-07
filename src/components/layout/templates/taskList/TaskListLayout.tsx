@@ -155,7 +155,7 @@ const TaskListLayout = () => {
               </li>
             </ol>
           </div>
-          <BoardViewLayout tasks={filteredTasks} />
+          <BoardViewLayout tasks={filteredTasks}  />
         </div>
       </div>
     </div>

@@ -67,6 +67,7 @@ const TaskWrapper = ({
     <div
       className="taskWrapper"
       data-id="task"
+      data-taskid={customKey}
       data-order={order}
       key={customKey}
       onKeyDown={(e) => (e.key === "Enter" ? customFunc(name, emojiData) : "")}

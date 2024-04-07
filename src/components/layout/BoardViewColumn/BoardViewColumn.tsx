@@ -3,6 +3,7 @@ import { modifyTask } from "@/api/modifyData";
 import PlusIcon from "@/assets/interface/PlusIcon";
 import TaskLoader from "@/components/Loaders/TaskLoader/TaskLoader";
 import TaskWrapper from "@/components/TaskWrapper/TaskWrapper";
+import { useLocalStorageSort } from "@/hooks/useLocalStorageSort";
 import { TaskType } from "@/state/taskSlice/taskSlice";
 import { useUser } from "@clerk/clerk-react";
 import { useMemo, useState } from "react";
@@ -34,6 +35,7 @@ const BoardViewColumn = ({
     [tasks]
   );
 
+  const useSort = useLocalStorageSort(filteredTasks);
   const { mutateAsync: addTaskMutation } = useMutation({
     mutationFn: addTask,
     onSuccess: () => {
@@ -101,11 +103,11 @@ const BoardViewColumn = ({
         <span className={`losion-group-status-text ${taskClassName}`}>
           {statusTitle}
         </span>
-        <span className="losion-group-count">{filteredTasks?.length}</span>
+        <span className="losion-group-count">{useSort?.length}</span>
       </div>
       <ul className="losion-tasks-group">
-        {filteredTasks ? (
-          filteredTasks.map((sortedTask, index) => (
+        {useSort ? (
+          useSort.map((sortedTask, index) => (
             <TaskWrapper
               customKey={sortedTask.id}
               key={index}
