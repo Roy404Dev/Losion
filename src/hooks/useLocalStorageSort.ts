@@ -2,7 +2,11 @@ import { LocalStorageDatasType } from "@/components/layout/BoardView/BoardViewLa
 import { TaskType } from "@/state/taskSlice/taskSlice";
 import { useMemo } from "react";
 import { useParams } from "react-router";
-export const useLocalStorageSort = (tasks: any) => {
+
+export const useLocalStorageSort = (
+  tasks: TaskType[] | undefined
+): TaskType[] | undefined => {
+  if (!tasks) return undefined;
   const params = useParams();
   const data: LocalStorageDatasType[] = JSON.parse(
     localStorage.getItem(`taskOrder-${params.id}`) || "[]"
