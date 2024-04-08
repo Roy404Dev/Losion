@@ -3,13 +3,15 @@ import tabSlice from "./tab/tabSlice";
 import userSlice from "./userSlice/userSlice";
 import taskSlice from "./taskSlice/taskSlice";
 import modalActionsSlice from "./modalActions/modalActionsSlice";
+import hamburgerSlice from "./hamburger/hamburgerSlice";
 
 export const store = configureStore({
   reducer: {
     tab: tabSlice,
     user: userSlice,
     tasks: taskSlice,
-    modalActions: modalActionsSlice
+    modalActions: modalActionsSlice,
+    hamburger: hamburgerSlice
   },
 });
 

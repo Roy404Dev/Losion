@@ -35,7 +35,8 @@ const BoardViewColumn = ({
     [tasks]
   );
 
-  const useSort = useLocalStorageSort(filteredTasks);
+  const useSort = useLocalStorageSort(filteredTasks) ?? filteredTasks;
+  console.log(useSort);
   const { mutateAsync: addTaskMutation } = useMutation({
     mutationFn: addTask,
     onSuccess: () => {

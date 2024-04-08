@@ -12,6 +12,27 @@ export const useDragTask = () => {
   const ref = React.useCallback((nodeEle: HTMLDivElement) => {
     setNode(nodeEle);
   }, []);
+
+  //Get task height and bottom
+  // const taskCloneParent = taskClone.parentElement;
+  // //Get all tasks from clone column
+  // const allTasks =
+  //   taskCloneParent?.querySelectorAll<HTMLElement>("[data-id=task]");
+  // const tasksAmount = allTasks?.length || 0;
+
+  const arrOfElements: HTMLElement[] = [];
+  const ulElement = node?.parentElement as HTMLUListElement | null;
+  
+  if (ulElement) {
+    ulElement.childNodes.forEach(childNode => {
+      if (childNode instanceof HTMLElement && childNode.classList.contains('taskWrapper')) {
+        arrOfElements.push(childNode);
+      }
+    });
+  }
+  
+  console.log(arrOfElements);
+  
   const params = useParams();
 
   const todoDimensions = document.querySelector(
@@ -29,6 +50,8 @@ export const useDragTask = () => {
     status: "",
     order: null,
   };
+
+  // for(let i = 0; i < )
 
   const handleMouseDown = React.useCallback(
     (e: MouseEvent) => {

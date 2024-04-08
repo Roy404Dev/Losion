@@ -3,16 +3,32 @@ import HorizontalElipsis from "@/assets/interface/HorizontalElipsis";
 import StarIcon from "@/assets/interface/icons/StarIcon";
 import { TabsState } from "@/state/tab/tabSlice";
 import "./TaskListHeader.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleMenu } from "@/state/hamburger/hamburgerSlice";
+import { RootState } from "@/state/store";
 const TaskListHeader = ({ tabs }: TabsState) => {
   // const [selectedEmoji, setSelectedEmoji] = useState("");
-
+  const hamburgerMenuBoolean = useSelector(
+    (state: RootState) => state.hamburger
+  );
+  const dispatch = useDispatch();
   const handleChangeEmoji = () => {};
   return (
     <div className="taskListLayout__header">
       <div className="taskListLayout__header-row">
         <div className="taskListLayout__header__left__content">
           <div className="task-name-wrapper">
-            <div className="taskListLayout__header-hamburgerMenu">
+            <div
+              className="taskListLayout__header-hamburgerMenu"
+              onClick={() =>
+                dispatch(
+                  toggleMenu({
+                    isHamburgerMenuSelected:
+                      !hamburgerMenuBoolean.isHamburgerMenuSelected,
+                  })
+                )
+              }
+            >
               <span></span>
               <span></span>
               <span></span>

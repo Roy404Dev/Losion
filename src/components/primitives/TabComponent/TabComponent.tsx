@@ -53,17 +53,17 @@ const TabComponent = ({
       setSelectedTab(dataValue);
     }
   };
+  const selectedClassName =
+    selectedTab === dataValue ? " aside-task-tab--selected" : "";
 
   return (
     <Link
       to={tabId ?? "/"}
       style={{ textDecoration: "none" }}
-      className="app-aside-tab-link"
+      className={`app-aside-tab-link app-aside-tab-link-on-mobile`}
     >
       <li
-        className={`app-aside-tab ${className}${
-          selectedTab === dataValue ? " aside-task-tab--selected" : ""
-        }`}
+        className={`app-aside-tab ${className}${selectedClassName}`}
         onClick={handleClick}
         role="tab"
       >

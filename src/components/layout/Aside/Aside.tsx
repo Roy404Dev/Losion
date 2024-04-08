@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNewTab } from "@/state/tab/tabSlice";
 import SettingsIcon from "@/assets/interface/UI/SettingsIcon";
 import { RootState } from "@/state/store";
+import { toggleMenu } from "@/state/hamburger/hamburgerSlice";
 // import { useNavigate } from "react-router";
 
 const Aside = () => {
@@ -25,7 +26,11 @@ const Aside = () => {
   const token = useSelector((state: RootState) => state.user.token);
   const { userId } = useAuth();
   const [selectedTab, setSelectedTab] = useState<number>(0);
-
+  // const [hamburgerMenu, setHamburgerMenu] = useState(true);
+  const hamburgerMenuBoolean = useSelector(
+    (state: RootState) => state.hamburger
+  );
+  console.log(hamburgerMenuBoolean);
   // const navigate = useNavigate();
 
   const { data: tabsData } = useQuery({
@@ -59,95 +64,111 @@ const Aside = () => {
       FetchRan = true;
     };
   }, [tabsData]);
+
+  const selectedClassMobile = hamburgerMenuBoolean.isHamburgerMenuSelected
+    ? "app-aside-tab-link-on-mobile--selected"
+    : "app-aside-tab-link-on-mobile--notselected";
+
   return (
-    <aside className="app-aside" data-drag="aside-drag">
-      <div className="app-aside-row" ref={ref}>
-        <div className="app-aside-col">
-          <div className="app-aside-top-user">
-            <img
-              className="user-profile-image"
-              src={user.user?.imageUrl}
-              alt="user image"
-            />
-            <span className="user-profile-firstname">
-              {user.user?.firstName}
-            </span>
-          </div>
-          <ul className="app-aside-action-tabs">
-            <TabComponent
-              className="aside-action-tab"
-              dataValue={-1}
-              tabId="null"
-            >
-              <button className="task-tab-button action-tab-button">
-                <SearchIcon />
-                Search
-              </button>
-            </TabComponent>
-            <TabComponent
-              className="aside-action-tab"
-              dataValue={-1}
-              tabId="null"
-            >
-              <button className="task-tab-button action-tab-button">
-                <ClockIcon />
-                Updates
-              </button>
-            </TabComponent>
-            <TabComponent
-              className="aside-action-tab"
-              dataValue={-1}
-              tabId="null"
-            >
-              <button className="task-tab-button action-tab-button">
-                <SettingsIcon />
-                Settings & members
-              </button>
-            </TabComponent>
-            <TabComponent
-              className="aside-action-tab"
-              dataValue={-1}
-              tabId="null"
-            >
-              <button className="task-tab-button action-tab-button" onClick={handleAddTab}>
-                <AddIcon />
-                New Page
-              </button>
-            </TabComponent>
-          </ul>
-          <ul className="app-aside-task-tabs">
-            {tabsData &&
-              tabsData.map((element, index) => (
-                <TabComponent
-                  className="aside-task-tab"
-                  dataValue={index + 1}
-                  selectedTab={selectedTab}
-                  setSelectedTab={setSelectedTab}
-                  key={index}
-                  tabId={element.id}
-                  showActions={true}
-                  data={element}
+    <>
+      {hamburgerMenuBoolean.isHamburgerMenuSelected && (
+        <div className="transparent-bg-on-hamburger-menu" onClick={() => dispatch(toggleMenu({isHamburgerMenuSelected: false}))}></div>
+      )}
+      <aside
+        className={`app-aside ${selectedClassMobile}`}
+        data-drag="aside-drag"
+      >
+        <div className="app-aside-row" ref={ref}>
+          <div className="app-aside-col">
+            <div className="app-aside-top-user">
+              <img
+                className="user-profile-image"
+                src={user.user?.imageUrl}
+                alt="user image"
+              />
+              <span className="user-profile-firstname">
+                {user.user?.firstName}
+              </span>
+            </div>
+            <ul className="app-aside-action-tabs">
+              <TabComponent
+                className="aside-action-tab"
+                dataValue={-1}
+                tabId="null"
+              >
+                <button className="task-tab-button action-tab-button">
+                  <SearchIcon />
+                  Search
+                </button>
+              </TabComponent>
+              <TabComponent
+                className="aside-action-tab"
+                dataValue={-1}
+                tabId="null"
+              >
+                <button className="task-tab-button action-tab-button">
+                  <ClockIcon />
+                  Updates
+                </button>
+              </TabComponent>
+              <TabComponent
+                className="aside-action-tab"
+                dataValue={-1}
+                tabId="null"
+              >
+                <button className="task-tab-button action-tab-button">
+                  <SettingsIcon />
+                  Settings & members
+                </button>
+              </TabComponent>
+              <TabComponent
+                className="aside-action-tab"
+                dataValue={-1}
+                tabId="null"
+              >
+                <button
+                  className="task-tab-button action-tab-button"
+                  onClick={handleAddTab}
                 >
-                  <button className="task-tab-button">
-                    {element.emoji} {element.name}
-                  </button>
-                </TabComponent>
-              ))}
-          </ul>
-          <button className="add-page-btn" onClick={handleAddTab}>
-            <PlusIcon /> Add a page
-          </button>
-          <ul className="app-aside-settings">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
+                  <AddIcon />
+                  New Page
+                </button>
+              </TabComponent>
+            </ul>
+            <ul className="app-aside-task-tabs">
+              {tabsData &&
+                tabsData.map((element, index) => (
+                  <TabComponent
+                    className="aside-task-tab"
+                    dataValue={index + 1}
+                    selectedTab={selectedTab}
+                    setSelectedTab={setSelectedTab}
+                    key={index}
+                    tabId={element.id}
+                    showActions={true}
+                    data={element}
+                  >
+                    <button className="task-tab-button">
+                      {element.emoji} {element.name}
+                    </button>
+                  </TabComponent>
+                ))}
+            </ul>
+            <button className="add-page-btn" onClick={handleAddTab}>
+              <PlusIcon /> Add a page
+            </button>
+            <ul className="app-aside-settings">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
+    </>
   );
 };
 
