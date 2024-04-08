@@ -15,7 +15,7 @@ import { addNewTab } from "@/state/tab/tabSlice";
 import SettingsIcon from "@/assets/interface/UI/SettingsIcon";
 import { RootState } from "@/state/store";
 import { toggleMenu } from "@/state/hamburger/hamburgerSlice";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const Aside = () => {
   const [ref] = useDragger();
@@ -26,12 +26,11 @@ const Aside = () => {
   const token = useSelector((state: RootState) => state.user.token);
   const { userId } = useAuth();
   const [selectedTab, setSelectedTab] = useState<number>(0);
-  // const [hamburgerMenu, setHamburgerMenu] = useState(true);
   const hamburgerMenuBoolean = useSelector(
     (state: RootState) => state.hamburger
   );
   console.log(hamburgerMenuBoolean);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { data: tabsData } = useQuery({
     queryFn: () => getTabs(userId || ""),
@@ -57,7 +56,7 @@ const Aside = () => {
     if (tabsData && !FetchRan && token != null) {
       dispatch(addNewTab({ tabs: tabsData }));
       //When aside is loaded navigate user to first tab
-      // navigate(`/${tabsData[0].id}`);
+      navigate(`/${tabsData[0].id}`);
       //TODO
     }
     return () => {
