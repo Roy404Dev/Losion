@@ -29,7 +29,6 @@ const Aside = () => {
   const hamburgerMenuBoolean = useSelector(
     (state: RootState) => state.hamburger
   );
-  console.log(hamburgerMenuBoolean);
   const navigate = useNavigate();
 
   const { data: tabsData } = useQuery({
