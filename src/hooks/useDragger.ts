@@ -8,7 +8,7 @@ export const useDragger = () => {
   }, []);
 
   const handleMouseDown = React.useCallback(
-    (e: MouseEvent) => {
+    () => {
       if (!node) {
         return;
       }
