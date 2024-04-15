@@ -1,7 +1,4 @@
 import "./Aside.scss";
-import SearchIcon from "@/assets/interface/SearchIcon";
-import ClockIcon from "@/assets/interface/ClockIcon";
-import AddIcon from "@/assets/interface/AddIcon";
 import TabComponent from "@/components/primitives/TabComponent/TabComponent";
 import { useDragger } from "@/hooks/useDragger";
 import { useEffect, useState } from "react";
@@ -12,25 +9,23 @@ import { getTabs } from "@/api/getData";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewTab } from "@/state/tab/tabSlice";
-import SettingsIcon from "@/assets/interface/UI/SettingsIcon";
 import { RootState } from "@/state/store";
 import { toggleMenu } from "@/state/hamburger/hamburgerSlice";
 import { useNavigate } from "react-router";
+import ActionTabs from "./ActionTabs/ActionTabs";
 
 const Aside = () => {
   const [ref] = useDragger();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useUser();
   let FetchRan = false;
   const queryClient = useQueryClient();
-  const token = useSelector((state: RootState) => state.user.token);
   const { userId } = useAuth();
   const [selectedTab, setSelectedTab] = useState<number>(0);
   const hamburgerMenuBoolean = useSelector(
     (state: RootState) => state.hamburger
   );
-  const navigate = useNavigate();
-
   const { data: tabsData } = useQuery({
     queryFn: () => getTabs(userId || ""),
     queryKey: ["tabs"],
@@ -52,7 +47,7 @@ const Aside = () => {
     });
   };
   useEffect(() => {
-    if (tabsData && !FetchRan && token != null) {
+    if (tabsData && !FetchRan) {
       dispatch(addNewTab({ tabs: tabsData }));
       //When aside is loaded navigate user to first tab
       navigate(`/${tabsData[0].id}`);
@@ -70,10 +65,15 @@ const Aside = () => {
   return (
     <>
       {hamburgerMenuBoolean.isHamburgerMenuSelected && (
-        <div className="transparent-bg-on-hamburger-menu" onClick={() => dispatch(toggleMenu({isHamburgerMenuSelected: false}))}></div>
+        <div
+          className="transparent-bg-on-hamburger-menu"
+          onClick={() =>
+            dispatch(toggleMenu({ isHamburgerMenuSelected: false }))
+          }
+        ></div>
       )}
       <aside
-        className={`app-aside ${selectedClassMobile}`}
+        className={`app-aside ${selectedClassMobile} custom-scroll-bar`}
         data-drag="aside-drag"
       >
         <div className="app-aside-row" ref={ref}>
@@ -88,51 +88,7 @@ const Aside = () => {
                 {user.user?.firstName}
               </span>
             </div>
-            <ul className="app-aside-action-tabs">
-              <TabComponent
-                className="aside-action-tab"
-                dataValue={-1}
-                tabId="null"
-              >
-                <button className="task-tab-button action-tab-button">
-                  <SearchIcon />
-                  Search
-                </button>
-              </TabComponent>
-              <TabComponent
-                className="aside-action-tab"
-                dataValue={-1}
-                tabId="null"
-              >
-                <button className="task-tab-button action-tab-button">
-                  <ClockIcon />
-                  Updates
-                </button>
-              </TabComponent>
-              <TabComponent
-                className="aside-action-tab"
-                dataValue={-1}
-                tabId="null"
-              >
-                <button className="task-tab-button action-tab-button">
-                  <SettingsIcon />
-                  Settings & members
-                </button>
-              </TabComponent>
-              <TabComponent
-                className="aside-action-tab"
-                dataValue={-1}
-                tabId="null"
-              >
-                <button
-                  className="task-tab-button action-tab-button"
-                  onClick={handleAddTab}
-                >
-                  <AddIcon />
-                  New Page
-                </button>
-              </TabComponent>
-            </ul>
+            <ActionTabs tabsData={tabsData} />
             <ul className="app-aside-task-tabs">
               {tabsData &&
                 tabsData.map((element, index) => (

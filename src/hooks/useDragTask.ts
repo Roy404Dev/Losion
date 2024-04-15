@@ -13,26 +13,20 @@ export const useDragTask = () => {
     setNode(nodeEle);
   }, []);
 
-  //Get task height and bottom
-  // const taskCloneParent = taskClone.parentElement;
-  // //Get all tasks from clone column
-  // const allTasks =
-  //   taskCloneParent?.querySelectorAll<HTMLElement>("[data-id=task]");
-  // const tasksAmount = allTasks?.length || 0;
-
   const arrOfElements: HTMLElement[] = [];
   const ulElement = node?.parentElement as HTMLUListElement | null;
-  
+
   if (ulElement) {
-    ulElement.childNodes.forEach(childNode => {
-      if (childNode instanceof HTMLElement && childNode.classList.contains('taskWrapper')) {
+    ulElement.childNodes.forEach((childNode) => {
+      if (
+        childNode instanceof HTMLElement &&
+        childNode.classList.contains("taskWrapper")
+      ) {
         arrOfElements.push(childNode);
       }
     });
   }
-  
-  console.log(arrOfElements);
-  
+
   const params = useParams();
 
   const todoDimensions = document.querySelector(
@@ -51,14 +45,18 @@ export const useDragTask = () => {
     order: null,
   };
 
-  // for(let i = 0; i < )
-
   const handleMouseDown = React.useCallback(
     (e: MouseEvent) => {
       if (!node) return;
       if (!todoDimensions || !doingDimentions || !doneDimentions) return;
       //clone a task
       const taskClone = node.cloneNode(true) as HTMLElement;
+      //Constraints
+      //Dont allow run when task at edit state
+      //Dont allow when renaming or changing other properties of task's
+
+      if (taskClone.dataset.edit === "true") return 0;
+
       taskClone.classList.add("task-clone-drag-mode");
       //Styles for clone
       taskClone.style.position = "absolute";
@@ -184,3 +182,46 @@ export const useDragTask = () => {
 
   return [ref];
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Will god save me?

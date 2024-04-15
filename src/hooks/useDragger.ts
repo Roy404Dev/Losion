@@ -12,21 +12,21 @@ export const useDragger = () => {
       if (!node) {
         return;
       }
-      const startPos = {
-        width: node.clientWidth,
-        x: e.clientX,
-        y: e.clientY,
-      };
-      console.log(startPos.width);
+      // const startPos = {
+      //   width: node.clientWidth,
+      //   x: e.clientX,
+      //   y: e.clientY,
+      // };
       const handleMouseMove = (e: MouseEvent) => {
         setTimeout(() => {
-          if (node.parentElement) {
+          if (node && node.parentElement) {
             if (e.clientX > 250 && e.clientX < 500) {
-              node.parentElement.style.width = `${e.clientX}px`;
+              node.parentElement.style.width = `${e.clientX + 60}px`;
             }
           }
         }, 200);
       };
+
       const handleMouseUp = () => {
         document.removeEventListener("mousemove", handleMouseMove);
         document.removeEventListener("mouseup", handleMouseUp);

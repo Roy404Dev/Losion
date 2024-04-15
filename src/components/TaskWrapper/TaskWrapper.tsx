@@ -31,7 +31,7 @@ const TaskWrapper = ({
   setEditBoolean,
   customFunc,
   emoji,
-  order
+  order,
 }: taskWrapper) => {
   const [name, setName] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -69,6 +69,7 @@ const TaskWrapper = ({
       data-id="task"
       data-taskid={customKey}
       data-order={order}
+      data-edit={showEmojiPicker || showActionModal || isEditable}
       key={customKey}
       onKeyDown={(e) => (e.key === "Enter" ? customFunc(name, emojiData) : "")}
       ref={ref}

@@ -1,7 +1,9 @@
 @use "../../../scss/abstracts/colors";
 @use "../../../scss/base/variables";
 .app-aside {
-  min-height: 100vh;
+  max-height: 100vh;
+  height: 100%;
+  overflow-y: auto;
   width: 20%;
   padding: 0.5em 0;
   position: relative;
@@ -145,8 +147,7 @@
     left: 0;
     position: absolute;
     z-index: 999;
-    max-width: 50em;
-    width: 60%;
+    width: min(60%, 50em);
   }
   .transparent-bg-on-hamburger-menu {
     position: absolute;
