@@ -6,6 +6,7 @@ import TaskWrapper from "@/components/TaskWrapper/TaskWrapper";
 import { useLocalStorageSort } from "@/hooks/useLocalStorageSort";
 import { TaskType } from "@/state/taskSlice/taskSlice";
 import { useUser } from "@clerk/clerk-react";
+import { Reorder } from "framer-motion";
 import { useMemo, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router";
@@ -18,6 +19,8 @@ type BoardViewColumnType = {
   taskClassName: string;
 };
 //TODO
+
+// const {} = use
 
 const BoardViewColumn = ({
   statusTitle,
@@ -107,19 +110,21 @@ const BoardViewColumn = ({
       </div>
       <ul className="losion-tasks-group">
         {useSort ? (
-          useSort.map((sortedTask, index) => (
-            <TaskWrapper
-              customKey={sortedTask.id}
-              key={index}
-              order={index + 1}
-              customFunc={handleModify}
-              editBoolean={isEditable}
-              setEditBoolean={setIsEditable}
-              emoji={sortedTask.emoji}
-            >
-              <span>{sortedTask.table_name}</span>
-            </TaskWrapper>
-          ))
+          <Reorder.Group values={useSort} onReorder={(e) => console.log(e)}>
+            {useSort.map((sortedTask, index) => (
+              <TaskWrapper
+                customKey={sortedTask.id}
+                key={index}
+                order={index + 1}
+                customFunc={handleModify}
+                editBoolean={isEditable}
+                setEditBoolean={setIsEditable}
+                emoji={sortedTask.emoji}
+              >
+                <span>{sortedTask.table_name}</span>
+              </TaskWrapper>
+            ))}
+          </Reorder.Group>
         ) : (
           <TaskLoader />
         )}

@@ -1,80 +1,84 @@
-// import { AddPage } from "@/api/addData";
-// import { useAuth } from "@clerk/clerk-react";
-// import { useState } from "react";
-import TemplateIcon from "@/assets/interface/icons/TemplateIcon";
-
 import "./AddPageModal.scss";
 
-import TableIcon from "@/assets/interface/icons/TableIcon";
-import MoreIcon from "@/assets/interface/icons/MoreIcon";
-import ImportIcon from "@/assets/interface/icons/ImportIcon";
-import PageIcon from "@/assets/interface/icons/PageIcon";
+import HorizontalElipsis from "@/assets/interface/HorizontalElipsis";
+import { modifyTabAPITemplateId } from "@/api/modifyData";
+import { useMutation, useQueryClient } from "react-query";
+import { useParams } from "react-router";
+import { useAuth } from "@clerk/clerk-react";
+
+type test = {
+  template_id: string | undefined;
+};
 
 const AddPageModal = () => {
-  //Empty page code 10
-  // const { userId } = useAuth();
-  // const [data, setData] = useState({
-  //   emoji: "",
-  //   name: "",
-  //   user_id: userId,
-  //   content: "",
-  //   template_id: 0,
-  // });
+  const params = useParams();
+  const id = params.id;
+  const { userId } = useAuth();
 
-  // const addPage = async () => {
-  //   if (userId) {
-  //     const result = await AddPage({
-  //       userId: userId,
-  //       name: data.name,
-  //       emoji: data.emoji,
-  //       template_id: data.template_id,
-  //     });
-  //     console.log(result);
-  //   } else {
-  //     console.error("Token is null.");
-  //   }
-  // };
+  const queryClient = useQueryClient();
+  const { mutateAsync: modifyPageTemplateMutation } = useMutation({
+    mutationFn: modifyTabAPITemplateId,
+    onSuccess: () => queryClient.invalidateQueries(["tabs"]),
+  });
 
-  //FIX THIS TODO
+  const modifyPageTemplate = async ({ template_id }: test) => {
+    if (!id || !template_id || !userId) return null;
+    await modifyPageTemplateMutation({
+      id: id,
+      template_id: Number(template_id),
+      user_id: userId,
+    });
+  };
 
   return (
     <div className="add-page-modal">
       <div className="add-page-wrapper">
-        <header></header>
-        <input
-          className="add-page_name-input"
-          type="text"
-          placeholder="Untitled"
-        />
-        <div
-          className="add-page-option add-page-default-options option-hover-style"
-          // onClick={addPage}
-        >
-          <PageIcon />
-          <span>Empty Page</span>
+        <header className="add-page-header">
+          <input
+            className="add-page_name-input"
+            type="text"
+            placeholder="Untitled"
+          />
+        </header>
+        <div className="add-page-brand-new-col">
+          <span className="add-page-brand-new-col__title">
+            Get started with
+          </span>
+          <ol className="add-page-brand-new">
+            <li
+              className="add-page-option option-hover-style"
+              data-templateid="10"
+              onClick={(e) =>
+                modifyPageTemplate({
+                  template_id: e.currentTarget.dataset.templateid,
+                })
+              }
+            >
+              <span>To-do list</span>
+            </li>
+            <li
+              className="add-page-option option-hover-style"
+              data-templateid="20"
+            >
+              <span>Weekly plan</span>
+            </li>
+            <li
+              className="add-page-option option-hover-style"
+              data-templateid="30"
+            >
+              <span>Journal</span>
+            </li>
+            <li
+              className="add-page-option option-hover-style"
+              data-templateid="40"
+            >
+              <span>Table</span>
+            </li>
+            <li className="add-page-option option-hover-style add-page-option--show-more">
+              <HorizontalElipsis />
+            </li>
+          </ol>
         </div>
-        <div className="add-page-option add-page-default-options  option-hover-style">
-          ✨<span>Start writing with AI...</span>
-        </div>
-        <span className="information-banner-add-new">Add new</span>
-        <ol className="add-page-brand-new">
-          <li className="add-page-option option-hover-style">
-            <ImportIcon />
-            <span>Import</span>
-          </li>
-          <li className="add-page-option option-hover-style">
-            <TemplateIcon />
-            <span>Templates</span>
-          </li>
-          <li className="add-page-option option-hover-style">
-            <TableIcon />
-            <span>Table</span>
-          </li>
-          <li className="add-page-option option-hover-style">
-            <MoreIcon />
-            <span>More</span>
-          </li>
-        </ol>
       </div>
     </div>
   );

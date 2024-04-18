@@ -8,8 +8,13 @@
   user-select: none;
   .add-page-wrapper {
     display: flex;
+    height: 100%;
+    justify-content: space-between;
     flex-direction: column;
     align-items: start;
+    .add-page-header {
+      padding-top: 6rem;
+    }
     .add-page_name-input {
       background-color: transparent;
       border: none;
@@ -23,16 +28,54 @@
         color: colors.getColor(text-not-selected-dark);
       }
     }
-    .add-page-brand-new {
-      width: 100%;
-      list-style: none;
-      & > .add-page-option {
-        padding: 0.3em 0.8em;
-        border-radius: 0.5em;
-        cursor: pointer;
+    .add-page-brand-new-col {
+      display: grid;
+      padding-bottom: 6rem;
+      .add-page-brand-new-col__title {
+        color: colors.getColor(secondary);
+        font-size: 0.875rem;
+        font-weight: 400;
+      }
+      .add-page-brand-new {
         display: flex;
-        gap: 1em;
         width: 100%;
+        list-style: none;
+        margin-top: 1em;
+        gap: 0.5em;
+        & > .add-page-option {
+          color: colors.getColor(text-primary);
+          font-size: 0.75rem;
+          border: 1px solid colors.getColor(primary-border);
+          border-radius: 2em;
+          cursor: pointer;
+          padding: 0.5rem 0.9rem;
+        }
+        & > .add-page-option--show-more {
+          padding: 0 0.4em;
+        }
+      }
+      .option-hover-style {
+        display: flex;
+        align-items: center;
+        svg {
+          height: 1.2em;
+          width: 1.2em;
+        }
+        span {
+          font-weight: 400;
+          font-size: 0.875rem;
+        }
+        &:hover {
+          transition: 130ms;
+          span {
+            color: colors.getColor(primary);
+          }
+          background-color: colors.getColor(secondary-darker-bg);
+        }
+      }
+      .horizontalElipsis {
+        fill: colors.getColor(secondary);
+        font-size: 1.5rem;
       }
     }
     .information-banner-add-new {
@@ -47,26 +90,6 @@
       padding: 0.3em 0.8em;
       border-radius: 0.5em;
       cursor: pointer;
-    }
-    .option-hover-style {
-      display: flex;
-      align-items: center;
-      svg {
-        height: 1.2em;
-        width: 1.2em;
-      }
-      span {
-        font-weight: 600;
-        font-size: 1rem;
-        color: colors.getColor(text-not-selected);
-      }
-      &:hover {
-        transition: 130ms;
-        span {
-          color: colors.getColor(primary);
-        }
-        background-color: colors.getColor(secondary-darker-bg);
-      }
     }
   }
 }

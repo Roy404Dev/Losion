@@ -3,7 +3,7 @@ import "./scss/style.scss";
 import LandingPage from "./pages/Landingpage/LandingPage";
 import AppPage from "./pages/AppPage/AppPage";
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
-import TaskListLayout from "./components/layout/templates/taskList/TaskListLayout";
+import MainContent from "./components/layout/Main/MainContent";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -24,7 +24,8 @@ const App = () => {
           path: "taskList?/:id",
           element: (
             <>
-              <TaskListLayout />
+              {/* <TaskListLayout /> */}
+              <MainContent />
             </>
           ),
         },

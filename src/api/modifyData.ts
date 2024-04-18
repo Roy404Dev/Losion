@@ -20,7 +20,14 @@ type tabType = {
   emoji: string;
   name: string;
   user_id: string;
+  template_id?: string;
 };
+
+type modifyTabAPITemplateIdType = {
+  template_id: number,
+  id: string,
+  user_id: string
+}
 
 export const modifyTask = async ({
   table_name,
@@ -42,6 +49,7 @@ export const modifyTask = async ({
     user_id: user_id,
     emoji: emoji,
     tab_id: tab_id,
+
   });
   if (error) {
     console.error(error.message);
@@ -63,3 +71,17 @@ export const modifyTabAPI = async ({ name, user_id, emoji, id}: tabType) => {
   }
   return data;
 };
+
+export const modifyTabAPITemplateId = async({template_id, id, user_id}: modifyTabAPITemplateIdType) => {
+  const client = supabase();
+  const { data, error } = await client.from("userTabs").upsert({
+    id: id,
+    template_id: template_id,
+    user_id: user_id,
+  });
+  if (error) {
+    console.error(error.message);
+  }
+  return data;
+}
+

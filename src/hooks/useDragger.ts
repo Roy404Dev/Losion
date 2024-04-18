@@ -20,7 +20,7 @@ export const useDragger = () => {
       const handleMouseMove = (e: MouseEvent) => {
         setTimeout(() => {
           if (node && node.parentElement) {
-            if (e.clientX > 250 && e.clientX < 500) {
+            if (e.clientX > 200 && e.clientX < 500) {
               node.parentElement.style.width = `${e.clientX + 60}px`;
             }
           }
