@@ -3,9 +3,7 @@
 .app-aside {
   max-height: 100vh;
   height: 100%;
-  overflow-y: auto;
   width: 20%;
-  padding: 0.5em 0;
   position: relative;
   user-select: none;
   background-color: colors.getColor(primary-bg);
@@ -39,7 +37,6 @@
       display: flex;
       border: none;
       gap: 0.5em;
-
       width: 100%;
       align-self: flex-start;
       cursor: pointer;
@@ -48,7 +45,6 @@
       line-height: 21px;
       font-size: 14px;
       padding: 0.2em 0.5em;
-      border: 1px solid red;
     }
   }
 
@@ -83,6 +79,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.1em;
+    // overflow: auto;
   }
   .add-page-btn {
     background-color: transparent;
@@ -116,10 +113,13 @@
     .app-aside-col {
       width: 100%;
       padding: 0 0.2em;
+      .app-aside-bottom {
+        height: auto;
+      }
     }
     .aside-dragger {
       width: 0.1em;
-      min-height: 100vh;
+      height: 100vh;
       cursor: col-resize;
       border-right: 2px solid colors.getColor(secondary-bg);
       padding: 0 0.2em;

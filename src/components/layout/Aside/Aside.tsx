@@ -73,7 +73,7 @@ const Aside = () => {
         ></div>
       )}
       <aside
-        className={`app-aside ${selectedClassMobile} custom-scroll-bar`}
+        className={`app-aside ${selectedClassMobile}`}
         data-drag="aside-drag"
       >
         <div className="app-aside-row" ref={ref}>
@@ -89,36 +89,30 @@ const Aside = () => {
               </span>
             </div>
             <ActionTabs tabsData={tabsData} />
-            <ul className="app-aside-task-tabs">
-              {tabsData &&
-                tabsData.map((element, index) => (
-                  <TabComponent
-                    className="aside-task-tab"
-                    dataValue={index + 1}
-                    selectedTab={selectedTab}
-                    setSelectedTab={setSelectedTab}
-                    key={index}
-                    tabId={element.id}
-                    showActions={true}
-                    data={element}
-                  >
-                    <button className="task-tab-button">
-                      {element.emoji} {element.name}
-                    </button>
-                  </TabComponent>
-                ))}
-            </ul>
-            <button className="add-page-btn" onClick={handleAddTab}>
-              <PlusIcon /> Add a page
-            </button>
-            <ul className="app-aside-settings">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+            <div className="app-aside-bottom custom-scroll-bar">
+              <ul className="app-aside-task-tabs">
+                {tabsData &&
+                  tabsData.map((element, index) => (
+                    <TabComponent
+                      className="aside-task-tab"
+                      dataValue={index + 1}
+                      selectedTab={selectedTab}
+                      setSelectedTab={setSelectedTab}
+                      key={index}
+                      tabId={element.id}
+                      showActions={true}
+                      data={element}
+                    >
+                      <button className="task-tab-button">
+                        {element.emoji} {element.name}
+                      </button>
+                    </TabComponent>
+                  ))}
+              </ul>
+              <button className="add-page-btn" onClick={handleAddTab}>
+                <PlusIcon /> Add a page
+              </button>
+            </div>
           </div>
         </div>
       </aside>

@@ -92,7 +92,10 @@ const TabComponent = ({
             inputValue={data?.name}
             tab_id={data.id}
           />
-          <div className="modal-overlay-bg"></div>
+          <div
+            className="modal-overlay-bg"
+            onClick={() => setShowModal(!showModal)}
+          ></div>
         </>
       )}
       {showModal && data && (
@@ -102,7 +105,10 @@ const TabComponent = ({
             setShowModalState={setShowModal}
             showModalState={showModal}
           />
-          <div className="modal-overlay-bg"></div>
+          <div
+            className="modal-overlay-bg"
+            onClick={() => setShowModal(!showModal)}
+          ></div>
         </>
       )}
       {showMore && (
