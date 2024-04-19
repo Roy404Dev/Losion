@@ -58,12 +58,14 @@
       }
     }
     .taskListLayout__wrapper {
+      height: 100%;
       .losion-collection_view_page-block {
         display: flex;
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid colors.getColor(primary-border);
         margin: 1em 0 1em 0;
+
         font-size: 0.8rem;
         .losion-tab-list {
           display: flex;

@@ -6,8 +6,6 @@
     height: 100%;
     width: 100%;
     margin-top: 3em;
-    //Overflow scroll on phone
-    overflow-x: scroll;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
     &::-webkit-scrollbar {
@@ -77,12 +75,19 @@
 @media screen and (min-width: 768px) {
   .BoardViewLayout_wrapper {
     .BoardViewLayout_rows {
-      //Overflow scroll on pc
-      overflow-x: auto;
-
       .BoardViewLayout_col {
         width: 100%;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .BoardViewLayout_wrapper {
+    .BoardViewLayout_rows {
+      //Overflow scroll on pc
+      overflow-x: scroll;
+      height: 100%;
     }
   }
 }

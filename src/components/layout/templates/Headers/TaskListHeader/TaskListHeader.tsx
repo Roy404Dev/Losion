@@ -12,7 +12,9 @@ const TaskListHeader = ({ tabs }: TabsState) => {
     (state: RootState) => state.hamburger
   );
   const dispatch = useDispatch();
-  const handleChangeEmoji = () => {};
+  const handleChangeEmoji = () => {
+    console.log('test');
+  };
   return (
     <div className="taskListLayout__header">
       <div className="taskListLayout__header-row">
