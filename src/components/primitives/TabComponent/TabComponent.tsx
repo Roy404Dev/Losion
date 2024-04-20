@@ -18,6 +18,8 @@ export type tabDataType = {
   user_id: string;
 };
 
+export type arrOfTabsType = tabDataType[];
+
 type TabComponentType = {
   children: React.ReactNode;
   className: string;

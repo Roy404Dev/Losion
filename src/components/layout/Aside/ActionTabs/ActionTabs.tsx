@@ -7,10 +7,9 @@ import TabComponent from "@/components/primitives/TabComponent/TabComponent";
 import { useAuth } from "@clerk/clerk-react";
 import { useMutation, useQueryClient } from "react-query";
 
-type ActionTabs = {
+export type ActionTabs = {
   tabsData: any
 }
-
 
 const ActionTabs = ({tabsData}: ActionTabs) => {
   const { userId } = useAuth();

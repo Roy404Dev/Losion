@@ -6,15 +6,26 @@ import "./TaskListHeader.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "@/state/hamburger/hamburgerSlice";
 import { RootState } from "@/state/store";
+import { useParams } from "react-router";
 const TaskListHeader = ({ tabs }: TabsState) => {
-  // const [selectedEmoji, setSelectedEmoji] = useState("");
+  const params = useParams();
   const hamburgerMenuBoolean = useSelector(
     (state: RootState) => state.hamburger
   );
   const dispatch = useDispatch();
   const handleChangeEmoji = () => {
     console.log('test');
+    //TODO
   };
+
+  const addToFavorites = () => {
+    //--save to localStorage to prevent unesasary database requests.--\\
+    const favoriteTabsString = localStorage.getItem('fs-tabs');
+    const favoriteTabs = favoriteTabsString ? JSON.parse(favoriteTabsString) : [];
+    if(params && params.id) {
+      localStorage.setItem("fs-tabs", JSON.stringify([...favoriteTabs, params.id]));
+    }
+  }
   return (
     <div className="taskListLayout__header">
       <div className="taskListLayout__header-row">
@@ -56,7 +67,7 @@ const TaskListHeader = ({ tabs }: TabsState) => {
           >
             <ClockIcon />
           </button>
-          <button className="add-to-favorite" aria-label="add to favorite">
+          <button className="add-to-favorite" aria-label="add to favorite" onClick={() => addToFavorites()}>
             <StarIcon />
           </button>
           <button

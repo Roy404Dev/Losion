@@ -2,22 +2,22 @@ import supabase from "@/lib/supabaseClient";
 
 type taskProps = {
   task_id: string;
+  user_id: string | undefined | null;
 };
 
 type tabProps = {
   tab_id: string;
-  user_id: string;
+  user_id: string | undefined | null;
 };
 
-export const deleteTask = async ({ task_id }: taskProps) => {
-  if (!task_id) throw new Error("task id is missing");
+export const deleteTask = async ({ task_id, user_id }: taskProps) => {
+  if (!task_id || !user_id) throw new Error("task id is missing");
   const client = supabase();
   const { data, error } = await client
     .from("task_list_template")
     .delete()
-    .eq("id", task_id);
-  //TODO need check also user id
-
+    .eq("id", task_id)
+    .eq("user_id", user_id)
   if (error) return error.message;
   return data;
 };

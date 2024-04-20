@@ -13,6 +13,7 @@ import { RootState } from "@/state/store";
 import { toggleMenu } from "@/state/hamburger/hamburgerSlice";
 import { useNavigate } from "react-router";
 import ActionTabs from "./ActionTabs/ActionTabs";
+import FavoriteTabs from "./FavoriteTabs/FavoriteTabs";
 
 const Aside = () => {
   const [ref] = useDragger();
@@ -23,6 +24,8 @@ const Aside = () => {
   const queryClient = useQueryClient();
   const { userId } = useAuth();
   const [selectedTab, setSelectedTab] = useState<number>(0);
+
+
   const hamburgerMenuBoolean = useSelector(
     (state: RootState) => state.hamburger
   );
@@ -51,7 +54,6 @@ const Aside = () => {
       dispatch(addNewTab({ tabs: tabsData }));
       //When aside is loaded navigate user to first tab
       navigate(`/${tabsData[0].id}`);
-      //TODO
     }
     return () => {
       FetchRan = true;
@@ -89,6 +91,7 @@ const Aside = () => {
               </span>
             </div>
             <ActionTabs tabsData={tabsData} />
+            <FavoriteTabs tabsData={tabsData} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
             <div className="app-aside-bottom custom-scroll-bar">
               <ul className="app-aside-task-tabs">
                 {tabsData &&

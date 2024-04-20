@@ -63,7 +63,6 @@ const TaskListLayout = () => {
       id: filterTabs[0].id,
     };
     dispatch(ModifyTab(dataObj));
-    //TODO FIX HERE
     await modifyTabAPI({
       emoji: emoji,
       name: filterTabs[0].name,

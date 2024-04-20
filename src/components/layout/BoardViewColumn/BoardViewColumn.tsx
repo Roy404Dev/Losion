@@ -1,13 +1,12 @@
 import { addTask } from "@/api/addData";
 import { modifyTask } from "@/api/modifyData";
 import PlusIcon from "@/assets/interface/PlusIcon";
-import TaskLoader from "@/components/Loaders/TaskLoader/TaskLoader";
+import './BoardViewColumn.scss';
 import TaskWrapper from "@/components/TaskWrapper/TaskWrapper";
-import { useLocalStorageSort } from "@/hooks/useLocalStorageSort";
 import { TaskType } from "@/state/taskSlice/taskSlice";
 import { useUser } from "@clerk/clerk-react";
 import { Reorder } from "framer-motion";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router";
 import { v4 as uuidv4 } from "uuid";
@@ -18,9 +17,6 @@ type BoardViewColumnType = {
   tasks?: TaskType[] | null;
   taskClassName: string;
 };
-//TODO
-
-// const {} = use
 
 const BoardViewColumn = ({
   statusTitle,
@@ -29,16 +25,26 @@ const BoardViewColumn = ({
   taskClassName,
 }: BoardViewColumnType) => {
   const user = useUser();
-  // const dispatch = useDispatch();
   const params = useParams();
   const queryClient = useQueryClient();
-
+  const [tasksState, setTasksState] = useState<TaskType[]>([]);
   const filteredTasks = useMemo(
     () => tasks?.filter((task) => task.status === statusName),
     [tasks]
   );
 
-  const useSort = useLocalStorageSort(filteredTasks) ?? filteredTasks;
+  // const useSort = useLocalStorageSort(filteredTasks) ?? filteredTasks;
+  const useSort = filteredTasks;
+  let fetched = true;
+  useEffect(() => {
+    if (useSort && useSort?.length > 0 && fetched) {
+      setTasksState(useSort);
+    }
+    return () => {
+      fetched = false;
+    };
+  }, [useSort]);
+
   const { mutateAsync: addTaskMutation } = useMutation({
     mutationFn: addTask,
     onSuccess: () => {
@@ -109,9 +115,9 @@ const BoardViewColumn = ({
         <span className="losion-group-count">{useSort?.length}</span>
       </div>
       <ul className="losion-tasks-group">
-        {useSort ? (
-          <Reorder.Group values={useSort} onReorder={(e) => console.log(e)}>
-            {useSort.map((sortedTask, index) => (
+        <Reorder.Group values={tasksState} onReorder={setTasksState}>
+          {tasksState?.map((sortedTask, index) => (
+            <Reorder.Item value={sortedTask} key={sortedTask.id}>
               <TaskWrapper
                 customKey={sortedTask.id}
                 key={index}
@@ -123,11 +129,9 @@ const BoardViewColumn = ({
               >
                 <span>{sortedTask.table_name}</span>
               </TaskWrapper>
-            ))}
-          </Reorder.Group>
-        ) : (
-          <TaskLoader />
-        )}
+            </Reorder.Item>
+          ))}
+        </Reorder.Group>
         <li>
           <button className="add-new-task-btn" onClick={() => handleAddTask()}>
             <PlusIcon />

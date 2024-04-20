@@ -11,64 +11,6 @@
     &::-webkit-scrollbar {
       display: none;
     }
-    .BoardViewLayout_col {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      gap: 1em;
-      min-width: 15em;
-      align-items: start;
-      .losion-group-status {
-        display: flex;
-        gap: 1em;
-        width: 100%;
-        .losion-group-count {
-          color: colors.getColor(text-not-selected);
-        }
-        .losion-group-status-text {
-          color: colors.getColor(text-primary);
-          white-space: none;
-          padding: 0 0.25em;
-          border-radius: 0.15em;
-          cursor: pointer;
-        }
-        .losion-task-status-todo {
-          background-color: colors.getColor(status-red);
-        }
-        .losion-task-status-doing {
-          background-color: colors.getColor(status-yellow);
-        }
-        .losion-task-status-done {
-          background-color: colors.getColor(status-green);
-        }
-      }
-      .losion-tasks-group {
-        display: grid;
-        gap: 0.3em;
-        width: 100%;
-        list-style: none;
-        .losion-task {
-          background-color: colors.getColor(secondary-darker-bg);
-          color: colors.getColor(primary);
-          font-weight: 600;
-          padding: 0.25em 0.5em;
-          border-radius: 0.25em;
-        }
-        .add-new-task-btn {
-          display: flex;
-          align-items: center;
-          gap: 0.5em;
-          background-color: transparent;
-          border: none;
-          color: colors.getColor(text-not-selected);
-          cursor: pointer;
-          .plusIcon {
-            fill: colors.getColor(text-not-selected);
-            height: 1em;
-          }
-        }
-      }
-    }
   }
 }
 
