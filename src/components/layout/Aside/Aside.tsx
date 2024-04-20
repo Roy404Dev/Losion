@@ -25,7 +25,6 @@ const Aside = () => {
   const { userId } = useAuth();
   const [selectedTab, setSelectedTab] = useState<number>(0);
 
-
   const hamburgerMenuBoolean = useSelector(
     (state: RootState) => state.hamburger
   );
@@ -91,7 +90,13 @@ const Aside = () => {
               </span>
             </div>
             <ActionTabs tabsData={tabsData} />
-            <FavoriteTabs tabsData={tabsData} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+            <span className="aside-section-title">Favorites</span>
+            <FavoriteTabs
+              tabsData={tabsData}
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+            />
+            <span className="aside-section-title">Private</span>
             <div className="app-aside-bottom custom-scroll-bar">
               <ul className="app-aside-task-tabs">
                 {tabsData &&

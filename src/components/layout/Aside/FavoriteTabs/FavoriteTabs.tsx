@@ -6,7 +6,7 @@ import "./FavoriteTabs.scss";
 import { Dispatch, SetStateAction } from "react";
 
 export type FavoriteTabsType = {
-  tabsData: arrOfTabsType;
+  tabsData: arrOfTabsType | null | undefined;
   selectedTab: number;
   setSelectedTab: Dispatch<SetStateAction<number>>;
 };
@@ -20,7 +20,6 @@ const FavoriteTabs = ({
   const favoriteTabs = favoriteTabsString ? JSON.parse(favoriteTabsString) : [];
   return (
     <div className="favorite-tabs">
-      <span>Favorites</span>
       <ul>
         {tabsData &&
           tabsData.map((e1: tabDataType, i: number) => {
@@ -44,7 +43,6 @@ const FavoriteTabs = ({
             }
           })}
       </ul>
-      <span>Private</span>
     </div>
   );
 };

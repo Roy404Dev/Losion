@@ -113,6 +113,12 @@
     .app-aside-col {
       width: 100%;
       padding: 0 0.2em;
+      .aside-section-title {
+        padding-left: 1em;
+        font-size: .75rem;
+        font-weight: 500;
+        color: colors.getColor(secondary);
+      }
       .app-aside-bottom {
         height: auto;
       }
