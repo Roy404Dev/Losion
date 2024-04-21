@@ -29,19 +29,23 @@
         transition: 200ms;
       }
     }
+    .chevronRight {
+      min-height: 0.6em;
+      min-width: 0.6em;
+      max-height: .6em;
+      max-width: .6em;
+      fill: #5f5f5f;
+    }
+    
     .task-tab-button {
       display: flex;
       gap: 0.5em;
       border: none;
       width: 100%;
-      // font-size: 0.8rem;
-
       align-self: flex-start;
-      // color: colors.getColor(secondary);
       cursor: pointer;
       background-color: transparent;
-      // font-weight: 600;
-      color: rgb(155, 155, 155);
+      color: colors.getColor(text-1);
       background-color: transparent;
       font-weight: 500;
       line-height: 21px;

@@ -48,8 +48,9 @@ const Aside = () => {
       template_id: 0,
     });
   };
+
   useEffect(() => {
-    if (tabsData && !FetchRan) {
+    if (tabsData && tabsData.length > 0 && !FetchRan) {
       dispatch(addNewTab({ tabs: tabsData }));
       //When aside is loaded navigate user to first tab
       navigate(`/${tabsData[0].id}`);

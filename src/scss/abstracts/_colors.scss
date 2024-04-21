@@ -10,22 +10,68 @@ $selected-theme-text-clr: #909090;
 
 // =====MIXINS=====
 
-:root {
-  --clr-primary-bg: #ffffff;
+.light-theme {
+  --clr-primary-bg: #f7f7f5;
+  --clr-layout-bg: #FFFFFF;
+  --clr-secondary-bg: #EFEFED;
+  --clr-secondary-darker-bg: #FFFFFF;
+  --clr-darker-bg: #5f5f5f;
+
+  --clr-gradient-clr-1: #2c2c2c;
+  --clr-gradient-clr-2: #353535;
+  --clr-gradient-clr-3: #3f3f3f;
+
   --clr-light-bg: #ffffff;
-  --clr-primary: #37352f;
-  --clr-secondary: #8c8c88;
-  --clr-darker-bg: #b6b5b3;
-  --clr-red: #ffe2dd;
-  --clr-yellow: #fdecc8;
-  --clr-green: #dbeddb;
+  --clr-primary: rgb(55, 53, 47); //UPDATED
+  --clr-secondary: #9b9b9b;
+
+  --clr-status-red: #FFE2DD;
+  --clr-status-yellow: #FDECC8;
+  --clr-status-green: #DBEDDB;
+
+  --clr-selected-bg: rgb(225, 225, 225);
 
   --clr-blue: #2383e2;
+
+  --clr-hover-tab: #e0e0e0;
+  --clr-hover-action: #333333;
+  --clr-hover-light: #e0e0e0;
+
+  //Text Colors
+  --clr-text-primary: rgb(29, 27, 22); //UPDATED
+  --clr-text-not-selected: #6e6e6e;
+  --clr-text-not-selected-dark: rgba(55, 53, 47, 0.182);
+  --clr-text-light-red: #be4c4c;
+
+  --clr-text-1: rgb(29, 27, 22);
+  --clr-text-2: #464646;
+  --clr-text-3: #f8bf1217;
+
+
+  --clr-text-status-green:rgb(28, 56, 41)
+  --clr-text-status-red:rgb(93, 23, 21);
+  --clr-text-status-yellow:rgb(64, 44, 27);
+
+  //Borders
+  --clr-primary-border: #2f2f2f;
+  --clr-secondary-border: #37352F;
+  --clr-light-dark-border: #414141;
+
+  //Inputs
+
+  --clr-modal-input: #313131;
+
+  //Scroll Bar
+  --clr-main-scrollBar: #474c50;
+
+  //trasnparent overlay
+  --clr-transparent-dark-bg: rgba(0, 0, 0, 0.248);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --clr-primary-bg: #202020;
+    --clr-layout-bg: #191919;
     --clr-secondary-bg: #2c2c2c;
     --clr-secondary-darker-bg: #262626;
     --clr-darker-bg: #5f5f5f;
@@ -56,6 +102,14 @@ $selected-theme-text-clr: #909090;
     --clr-text-not-selected-dark: #373737;
     --clr-text-light-red: #be4c4c;
 
+    --clr-text-1: rgb(155, 155, 155);
+    --clr-text-2: rgb(155, 155, 155);
+    --clr-text-3: #f8bf1217;
+
+    --clr-text-status-green: #ffffffcd;
+    --clr-text-status-red: #ffffffcd;
+    --clr-text-status-yellow:#ffffffcd;
+
     //Borders
     --clr-primary-border: #2f2f2f;
     --clr-secondary-border: #d4d4d4;
@@ -66,7 +120,7 @@ $selected-theme-text-clr: #909090;
     --clr-modal-input: #313131;
 
     //Scroll Bar
-    --clr-main-scrollBar: #474C50;
+    --clr-main-scrollBar: #474c50;
 
     //trasnparent overlay
     --clr-transparent-dark-bg: rgba(0, 0, 0, 0.248);

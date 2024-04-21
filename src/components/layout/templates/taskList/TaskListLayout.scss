@@ -73,20 +73,31 @@
           list-style: none;
           gap: 1em;
           .losion-collection-view-tab-button {
-            padding: 0 0.5em;
+            padding: 0 0.5em 0.4em 0;
+            .tab-list-add-btn {
+              background-color: transparent;
+              cursor: pointer;
+              .plusIcon {
+                fill: colors.getColor(text-not-selected);
+                height: .8em;
+              }
+            }
             button {
               display: flex;
               align-items: center;
               gap: 0.5em;
+              font-size: 0.875rem;
               font-weight: 500;
               background-color: transparent;
               border: none;
               cursor: pointer;
               color: colors.getColor(text-not-selected);
+              .hovered-path {
+                height: 1em;
+                width: 1em;
+                fill: colors.getColor(text-not-selected);
+              }
             }
-          }
-          .losion-collection-view-tab-table {
-            display: none;
           }
           //SELECTED STATE
           .losion-collection-view-tab-button__selected {

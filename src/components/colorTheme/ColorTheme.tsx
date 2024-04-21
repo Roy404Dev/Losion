@@ -13,6 +13,8 @@ const ColorTheme = ({
   isListVisible,
 }: colorThemeType) => {
   const handleThemeChange = (e: React.MouseEvent<HTMLButtonElement>) => {
+    //Store to localstorage
+    localStorage.setItem("prefer-color-theme", JSON.stringify(e.currentTarget.id));
     setColorTheme(e.currentTarget.id);
     setIsListVisible(!isListVisible);
   };

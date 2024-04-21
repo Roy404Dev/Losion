@@ -1,6 +1,6 @@
 @use "../../scss/abstracts/colors";
 .appPage {
-  background-color: #191919;
+  background-color: colors.getColor(layout-bg);
   display: flex;
   max-height: 100vh;
   height: 100%;

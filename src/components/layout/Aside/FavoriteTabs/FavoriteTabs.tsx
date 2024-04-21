@@ -4,6 +4,7 @@ import TabComponent, {
 } from "@/components/primitives/TabComponent/TabComponent";
 import "./FavoriteTabs.scss";
 import { Dispatch, SetStateAction } from "react";
+import { store } from "@/state/store";
 
 export type FavoriteTabsType = {
   tabsData: arrOfTabsType | null | undefined;
@@ -16,8 +17,12 @@ const FavoriteTabs = ({
   selectedTab,
   setSelectedTab,
 }: FavoriteTabsType) => {
+  
   const favoriteTabsString = localStorage.getItem("fs-tabs");
-  const favoriteTabs = favoriteTabsString ? JSON.parse(favoriteTabsString) : [];
+  let favoriteTabs = favoriteTabsString ? JSON.parse(favoriteTabsString) : [];
+  store.subscribe(() => {
+    favoriteTabs = store.getState().favorites.favoriteTab;
+  });
   return (
     <div className="favorite-tabs">
       <ul>

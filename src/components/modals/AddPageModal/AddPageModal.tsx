@@ -16,6 +16,7 @@ const AddPageModal = () => {
   const { userId } = useAuth();
 
   const queryClient = useQueryClient();
+  
   const { mutateAsync: modifyPageTemplateMutation } = useMutation({
     mutationFn: modifyTabAPITemplateId,
     onSuccess: () => queryClient.invalidateQueries(["tabs"]),

@@ -24,7 +24,6 @@ const App = () => {
           path: "taskList?/:id",
           element: (
             <>
-              {/* <TaskListLayout /> */}
               <MainContent />
             </>
           ),

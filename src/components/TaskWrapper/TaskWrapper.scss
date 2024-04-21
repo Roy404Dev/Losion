@@ -10,6 +10,7 @@
   border-radius: 0.25em;
 
   background-color: colors.getColor(secondary-darker-bg);
+  border: 1px solid colors.getColor(light-dark-border);
   color: colors.getColor(primary);
 
   //Make picker position absolute

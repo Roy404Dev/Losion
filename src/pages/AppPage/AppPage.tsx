@@ -27,8 +27,13 @@ const AppPage = () => {
       ran = false;
     };
   }, []);
+
+  // Get selected color scheme from localStorage
+  const colorScheme = JSON.parse(
+    localStorage.getItem("prefer-color-theme") || ""
+  );
   return (
-    <div className="appPage">
+    <div className={`appPage ${colorScheme}`}>
       <Aside />
       <Outlet />
     </div>

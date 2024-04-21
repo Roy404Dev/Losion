@@ -18,6 +18,7 @@ import EmojiPicker from "@emoji-mart/react";
 import { ModifyTab } from "@/state/tab/tabSlice";
 import { useAuth } from "@clerk/clerk-react";
 import { modifyTabAPI } from "@/api/modifyData";
+import PlusIcon from "@/assets/interface/PlusIcon";
 
 const TaskListLayout = () => {
   const tasks = useTasks();
@@ -46,7 +47,6 @@ const TaskListLayout = () => {
     };
   }, [tasks]);
 
-
   // name: string | null
   const handleChangeEmoji = async (e: Emoji) => {
     if (!userId) return null;
@@ -61,7 +61,9 @@ const TaskListLayout = () => {
       template_id: filterTabs[0].template_id,
       content: filterTabs[0].content,
       id: filterTabs[0].id,
+      favorite: filterTabs[0].favorite,
     };
+    //TODO FIX HERE
     dispatch(ModifyTab(dataObj));
     await modifyTabAPI({
       emoji: emoji,
@@ -120,25 +122,45 @@ const TaskListLayout = () => {
                   Table
                 </button>
               </li>
+              <li
+                className="losion-collection-view-tab-button"
+                role="tabElement"
+              >
+                <button className="tab-list-add-btn">
+                  <PlusIcon />
+                </button>
+              </li>
             </ul>
             <ol className="losion-action-list">
               <li className="losion-collection-action">
-                <button className="losion-collection-action-button" aria-label="filter">
+                <button
+                  className="losion-collection-action-button"
+                  aria-label="filter"
+                >
                   Filter
                 </button>
               </li>
               <li className="losion-collection-action">
-                <button className="losion-collection-action-button" aria-label="filter">
+                <button
+                  className="losion-collection-action-button"
+                  aria-label="filter"
+                >
                   Sort
                 </button>
               </li>
               <li className="losion-collection-action">
-                <button className="losion-collection-action-button" aria-label="lightning">
+                <button
+                  className="losion-collection-action-button"
+                  aria-label="lightning"
+                >
                   <LightningIcon />
                 </button>
               </li>
               <li className="losion-collection-action">
-                <button className="losion-collection-action-button" aria-label="search">
+                <button
+                  className="losion-collection-action-button"
+                  aria-label="search"
+                >
                   <SearchIcon />
                 </button>
               </li>
@@ -155,7 +177,7 @@ const TaskListLayout = () => {
               </li>
             </ol>
           </div>
-          <BoardViewLayout tasks={filteredTasks}  />
+          <BoardViewLayout tasks={filteredTasks} />
         </div>
       </div>
     </div>

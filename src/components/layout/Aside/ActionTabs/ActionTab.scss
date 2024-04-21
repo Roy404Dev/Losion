@@ -1,0 +1,20 @@
+@use '../../../../scss/abstracts/colors';
+// ===Action Tabs===
+.app-aside-action-tabs {
+  display: grid;
+  gap: 0.3em;
+  padding: 0.5em 0 1em 0;
+  .action-tab-button {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.1em 0;
+    color: colors.getColor(text-2) !important;
+  }
+  .aside-action-tab {
+    .task-tab-show-more {
+      display: none;
+    }
+    margin: 0 0.5em;
+  }
+}
