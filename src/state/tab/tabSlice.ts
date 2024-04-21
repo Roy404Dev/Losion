@@ -1,12 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export interface TabType {
+export type TabType = {
   emoji: string;
   name: string;
   user_id: string;
   template_id: number;
   content?: string;
   id: string;
+  favorite: boolean;
 }
 
 export type TabsState = {
@@ -22,6 +23,7 @@ const initialState: TabsState = {
       template_id: 0,
       content: "",
       id: "",
+      favorite: false,
     },
   ],
 };
@@ -36,7 +38,7 @@ const tabSlice = createSlice({
     ModifyTab: (state, action: PayloadAction<TabType>) => {
       //Filter tabs
       const filtered = state.tabs.filter((tab) => tab.id !== action.payload.id);
-      state.tabs = [...filtered, action.payload ];
+      state.tabs = [...filtered, action.payload];
     },
   },
 });

@@ -27,12 +27,12 @@ const TabModal = ({
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const { userId } = useAuth();
+
   const { mutateAsync: deleteTabMutation } = useMutation({
     mutationFn: deleteTab,
     onSuccess: () => queryClient.invalidateQueries(["tabs"]),
   });
-
-  const clickEvent = (e: MouseEvent<HTMLElement>) => {
+  const clickEvent = (e: MouseEvent<HTMLElement>, typeEvent: string) => {
     if (e.currentTarget.dataset.id) {
       dispatch(
         addModalAction({
@@ -43,8 +43,30 @@ const TabModal = ({
         })
       );
     }
-    //Toggles main modal
-    setShowModalState(!showModalState);
+
+    switch (typeEvent) {
+      case "addToFavorite":
+        setShowModalState(!showModalState);
+        break;
+      case "copyLink":
+        setShowModalState(!showModalState);
+        break;
+      case "duplicate":
+        setShowModalState(!showModalState);
+        break;
+      case "rename":
+        setShowModalState(!showModalState);
+        break;
+      case "moveTo":
+        setShowModalState(!showModalState);
+        break;
+      case "deleteTab":
+        deleteTabMutation({ tab_id: data.id, user_id: data.user_id });
+        setShowModalState(!showModalState);
+        break;
+      default:
+        setShowModalState(!showModalState);
+    }
   };
 
   return (
@@ -65,7 +87,7 @@ const TabModal = ({
             <li
               className="tab-modal__action"
               data-id="copy-link"
-              onClick={clickEvent}
+              onClick={(e) => clickEvent(e, "")}
             >
               <button className="tab-modal__action-button">
                 <CopyLinkIcon />
@@ -75,7 +97,7 @@ const TabModal = ({
             <li
               className="tab-modal__action"
               data-id="duplicate"
-              onClick={clickEvent}
+              onClick={(e) => clickEvent(e, "")}
             >
               <button className="tab-modal__action-button">
                 <DuplicateIcon />
@@ -85,7 +107,7 @@ const TabModal = ({
             <li
               className="tab-modal__action"
               data-id="rename"
-              onClick={clickEvent}
+              onClick={(e) => clickEvent(e, "")}
             >
               <button className="tab-modal__action-button">
                 <RenameIcon />
@@ -95,7 +117,7 @@ const TabModal = ({
             <li
               className="tab-modal__action"
               data-id="move-to"
-              onClick={clickEvent}
+              onClick={(e) => clickEvent(e, "")}
             >
               <button className="tab-modal__action-button">
                 <MoveToIcon />
@@ -105,9 +127,7 @@ const TabModal = ({
             <li
               className="tab-modal__action"
               data-id="delete"
-              onClick={() =>
-                deleteTabMutation({ tab_id: data.id, user_id: data.user_id })
-              }
+              onClick={(e) => clickEvent(e, "deleteTab")}
             >
               <button className="tab-modal__action-button">
                 <TrashIcon />

@@ -4,6 +4,7 @@ import userSlice from "./userSlice/userSlice";
 import taskSlice from "./taskSlice/taskSlice";
 import modalActionsSlice from "./modalActions/modalActionsSlice";
 import hamburgerSlice from "./hamburger/hamburgerSlice";
+import favoritesSlice from "./favorites/favoritesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     user: userSlice,
     tasks: taskSlice,
     modalActions: modalActionsSlice,
-    hamburger: hamburgerSlice
+    hamburger: hamburgerSlice,
+    favorites: favoritesSlice
   },
 });
 
