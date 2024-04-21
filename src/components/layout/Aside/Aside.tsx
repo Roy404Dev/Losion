@@ -90,7 +90,7 @@ const Aside = () => {
                 {user.user?.firstName}
               </span>
             </div>
-            <ActionTabs tabsData={tabsData} />
+            <ActionTabs />
             <span className="aside-section-title">Favorites</span>
             <FavoriteTabs
               tabsData={tabsData}

@@ -7,10 +7,7 @@ export type ActionTabs = {
   tabsData: any;
 };
 
-const ActionTabs = ({ tabsData }: ActionTabs) => {
-  // const { userId } = useAuth();
-
-  // const queryClient = useQueryClient();
+const ActionTabs = () => {
   return (
     <ul className="app-aside-action-tabs">
       <TabComponent className="aside-action-tab" dataValue={-1} tabId="null">
