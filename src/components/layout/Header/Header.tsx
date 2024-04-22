@@ -19,10 +19,18 @@ const Header = () => {
           <span className="header-app-name">Losion</span>
         </div>
         <div className="page-header-content-right">
-          <SignInButton mode="modal">
+          <SignInButton
+            mode="modal"
+            afterSignInUrl="tasklist"
+            redirectUrl="tasklist"
+          >
             <button className="login-btn">Log in</button>
           </SignInButton>
-          <SignInButton mode="modal">
+          <SignInButton
+            mode="modal"
+            afterSignUpUrl="tasklist"
+            redirectUrl="tasklist"
+          >
             <button className="get-losion-free">Get Lotion free</button>
           </SignInButton>
           <ColorTheme
