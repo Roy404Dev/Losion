@@ -1,12 +1,8 @@
 import useTasks from "@/hooks/useTasks";
 import BoardViewLayout from "../../BoardView/BoardViewLayout";
 import "./TaskListLayout.scss";
-import LightningIcon from "@/assets/interface/template/LightningIcon";
-import SearchIcon from "@/assets/interface/SearchIcon";
 import TableIcon from "@/assets/interface/icons/TableIcon";
 import BoardIcon from "@/assets/interface/icons/BoardIcon";
-import ChevronDown from "@/assets/interface/ChevronDown";
-import HorizontalElipsis from "@/assets/interface/HorizontalElipsis";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import { useParams } from "react-router";
@@ -19,6 +15,7 @@ import { ModifyTab } from "@/state/tab/tabSlice";
 import { useAuth } from "@clerk/clerk-react";
 import { modifyTabAPI } from "@/api/modifyData";
 import PlusIcon from "@/assets/interface/PlusIcon";
+import CollectionActions from "@/components/CollectionActions/CollectionActions";
 
 const TaskListLayout = () => {
   const tasks = useTasks();
@@ -131,51 +128,7 @@ const TaskListLayout = () => {
                 </button>
               </li>
             </ul>
-            <ol className="losion-action-list">
-              <li className="losion-collection-action">
-                <button
-                  className="losion-collection-action-button"
-                  aria-label="filter"
-                >
-                  Filter
-                </button>
-              </li>
-              <li className="losion-collection-action">
-                <button
-                  className="losion-collection-action-button"
-                  aria-label="filter"
-                >
-                  Sort
-                </button>
-              </li>
-              <li className="losion-collection-action">
-                <button
-                  className="losion-collection-action-button"
-                  aria-label="lightning"
-                >
-                  <LightningIcon />
-                </button>
-              </li>
-              <li className="losion-collection-action">
-                <button
-                  className="losion-collection-action-button"
-                  aria-label="search"
-                >
-                  <SearchIcon />
-                </button>
-              </li>
-              <li className="losion-collection-action">
-                <button className="losion-collection-action-button">
-                  <HorizontalElipsis />
-                </button>
-              </li>
-              <li className="losion-collection-action">
-                <button className="losion-collection-action-button action-new-button">
-                  New
-                  <ChevronDown />
-                </button>
-              </li>
-            </ol>
+            <CollectionActions />
           </div>
           <BoardViewLayout tasks={filteredTasks} />
         </div>

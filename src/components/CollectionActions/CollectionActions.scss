@@ -1,0 +1,54 @@
+@use '../../scss/abstracts/colors';
+.losion-action-list {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  //Mobile view
+  .losion-collection-action {
+    .losion-collection-action-button {
+      border: none;
+      cursor: pointer;
+      display: grid;
+      background-color: transparent;
+      height: 100%;
+      color: colors.getColor(secondary);
+      .horizontalElipsis {
+        fill: colors.getColor(secondary);
+        height: 2em;
+        width: 2em;
+      }
+      .lightningIcon {
+        fill: colors.getColor(secondary);
+      }
+    }
+    .action-new-button {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      background-color: colors.getColor(blue);
+      color: white;
+      padding: 0.25em 0.5em;
+      border-radius: 0.25em;
+      font-weight: 600;
+      .chevronDownBtn {
+        fill: white;
+      }
+    }
+  }
+}
+.losion-action-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+
+@media screen and (max-width: 768px) {
+  .losion-action-list {
+    .losion-collection-action {
+      &:nth-child(-n + 4) {
+        display: none;
+      }
+    }
+  }
+}

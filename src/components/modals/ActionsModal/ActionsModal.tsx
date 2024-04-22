@@ -10,6 +10,7 @@ type actionModalProps = {
 const ActionsModal = ({ task_id }: actionModalProps) => {
   const queryClient = useQueryClient();
   const { userId } = useAuth();
+  
   const { mutateAsync: deleteTaskMutation } = useMutation({
     mutationFn: deleteTask,
     onSuccess: () => {

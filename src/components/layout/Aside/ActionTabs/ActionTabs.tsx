@@ -3,9 +3,6 @@ import SearchIcon from "@/assets/interface/SearchIcon";
 import SettingsIcon from "@/assets/interface/UI/SettingsIcon";
 import TabComponent from "@/components/primitives/TabComponent/TabComponent";
 import "./ActionTab.scss";
-export type ActionTabs = {
-  tabsData: any;
-};
 
 const ActionTabs = () => {
   return (
