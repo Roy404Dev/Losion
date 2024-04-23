@@ -23,9 +23,9 @@ const favoritesSlice = createSlice({
     addNewFavoriteTab: (state, action: PayloadAction<Tab>) => {
       state.favoriteTab.push(action.payload);
     },
-    removeFavoriteTab: (state, action: PayloadAction<string[]>) => {
-
-    }
+    // removeFavoriteTab: (state, action: PayloadAction<string[]>) => {
+      // TODO
+    // }
   },
 });
 
