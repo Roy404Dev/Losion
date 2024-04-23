@@ -107,7 +107,7 @@ const Aside = () => {
                       dataValue={index + 1}
                       selectedTab={selectedTab}
                       setSelectedTab={setSelectedTab}
-                      key={index}
+                      key={element.id}
                       tabId={element.id}
                       showActions={true}
                       data={element}

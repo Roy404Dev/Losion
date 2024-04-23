@@ -4,7 +4,8 @@ import TabComponent, {
 } from "@/components/primitives/TabComponent/TabComponent";
 import "./FavoriteTabs.scss";
 import { Dispatch, SetStateAction } from "react";
-import { store } from "@/state/store";
+import { RootState, store } from "@/state/store";
+import { useSelector } from "react-redux";
 
 export type FavoriteTabsType = {
   tabsData: arrOfTabsType | null | undefined;
@@ -17,9 +18,9 @@ const FavoriteTabs = ({
   selectedTab,
   setSelectedTab,
 }: FavoriteTabsType) => {
-  
-  const favoriteTabsString = localStorage.getItem("fs-tabs");
-  let favoriteTabs = favoriteTabsString ? JSON.parse(favoriteTabsString) : [];
+  let favoriteTabs = useSelector(
+    (state: RootState) => state.favorites.favoriteTab
+  );
   store.subscribe(() => {
     favoriteTabs = store.getState().favorites.favoriteTab;
   });
@@ -28,7 +29,9 @@ const FavoriteTabs = ({
       <ul>
         {tabsData &&
           tabsData.map((e1: tabDataType, i: number) => {
-            if (favoriteTabs.some((e2: string) => e2 === e1.id)) {
+            if (
+              favoriteTabs.some((e2: { tab_id: string }) => e2.tab_id === e1.id)
+            ) {
               // If there's a match
               return (
                 <TabComponent
@@ -36,7 +39,7 @@ const FavoriteTabs = ({
                   dataValue={i + 1}
                   selectedTab={selectedTab}
                   setSelectedTab={setSelectedTab}
-                  key={i}
+                  key={e1.id}
                   tabId={e1.id}
                   showActions={true}
                 >

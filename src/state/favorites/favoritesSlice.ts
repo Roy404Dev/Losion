@@ -1,34 +1,34 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { TabType } from "../tab/tabSlice";
 
-type favoriteType = {
-  favoriteTab: TabType[];
-};
+interface Tab {
+  tab_id: string;
+}
 
-const initialStateFavorites: favoriteType = {
-  favoriteTab: [
-    {
-      emoji: "",
-      name: "",
-      user_id: "",
-      template_id: 0,
-      content: "",
-      id: "",
-      favorite: true,
-    },
-  ],
+interface FavoriteState {
+  favoriteTab: Tab[];
+}
+
+const initialState: FavoriteState = {
+  favoriteTab: [],
 };
 
 const favoritesSlice = createSlice({
   name: "favoritesSlice",
-  initialState: initialStateFavorites,
+  initialState,
   reducers: {
-    addNewFavoriteTab: (state, action: PayloadAction<favoriteType>) => {
-      state.favoriteTab = [...state.favoriteTab, ...action.payload.favoriteTab];
+    addFavoriteTabs: (state, action: PayloadAction<string[]>) => {
+      const tabsToAdd: Tab[] = action.payload.map((tab_id) => ({ tab_id }));
+      state.favoriteTab.push(...tabsToAdd);
+    },
+    addNewFavoriteTab: (state, action: PayloadAction<Tab>) => {
+      state.favoriteTab.push(action.payload);
+    },
+    removeFavoriteTab: (state, action: PayloadAction<string[]>) => {
+
     }
   },
 });
 
-export const { addNewFavoriteTab } = favoritesSlice.actions;
+export const { addNewFavoriteTab, addFavoriteTabs, removeFavoriteTab } = favoritesSlice.actions;
 
 export default favoritesSlice.reducer;

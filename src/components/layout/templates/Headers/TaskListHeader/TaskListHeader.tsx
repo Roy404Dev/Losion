@@ -21,12 +21,16 @@ const TaskListHeader = ({ tabs }: TabsState) => {
     //TODO
   };
   const isFavorite = filter[0]?.favorite;
+
   const addToFavorites = () => {
     //--save to localStorage to prevent unesasary database requests.--\\
+    //------problem-here-----\\
     const favoriteTabsString = localStorage.getItem("fs-tabs");
     const favoriteTabs = favoriteTabsString
       ? JSON.parse(favoriteTabsString)
       : [];
+    //------problem-here-----\\
+
     //Check if duplicate
     if (favoriteTabs.includes(params.id)) {
       const filteredTabs = favoriteTabs.filter(

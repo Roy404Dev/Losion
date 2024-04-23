@@ -9,6 +9,8 @@ const MainContent = () => {
   const params = useParams();
   const filteredTabs = tabs.filter((tab) => tab.id === params.id);
   const templateId = filteredTabs.length > 0 ? filteredTabs[0].template_id : null;
+  //Get favorites
+  
   switch (templateId) {
     case 0:
       return <AddPageModal />;

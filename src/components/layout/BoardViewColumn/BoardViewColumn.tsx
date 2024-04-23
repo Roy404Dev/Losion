@@ -1,7 +1,7 @@
 import { addTask } from "@/api/addData";
 import { modifyTask } from "@/api/modifyData";
 import PlusIcon from "@/assets/interface/PlusIcon";
-import './BoardViewColumn.scss';
+import "./BoardViewColumn.scss";
 import TaskWrapper from "@/components/TaskWrapper/TaskWrapper";
 import { TaskType } from "@/state/taskSlice/taskSlice";
 import { useUser } from "@clerk/clerk-react";
@@ -120,7 +120,7 @@ const BoardViewColumn = ({
             <Reorder.Item value={sortedTask} key={sortedTask.id}>
               <TaskWrapper
                 customKey={sortedTask.id}
-                key={index}
+                key={sortedTask.id}
                 order={index + 1}
                 customFunc={handleModify}
                 editBoolean={isEditable}
