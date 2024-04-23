@@ -24,11 +24,11 @@ const favoritesSlice = createSlice({
       state.favoriteTab.push(action.payload);
     },
     // removeFavoriteTab: (state, action: PayloadAction<string[]>) => {
-      // TODO
+    // TODO
     // }
   },
 });
 
-export const { addNewFavoriteTab, addFavoriteTabs, removeFavoriteTab } = favoritesSlice.actions;
+export const { addNewFavoriteTab, addFavoriteTabs } = favoritesSlice.actions;
 
 export default favoritesSlice.reducer;
